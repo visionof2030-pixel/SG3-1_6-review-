@@ -1,8 +1,8 @@
-test
+
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Super Goal 3 - Interactive Learning System</title>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,6 +28,7 @@ test
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -36,84 +37,89 @@ test
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
-            padding: 15px 10px;
+            padding: 12px 8px;
             direction: rtl;
-            font-size: 16px;
+            font-size: 15px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            touch-action: manipulation;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 5px;
+            padding: 0 8px;
+            width: 100%;
         }
 
+        /* Header */
         header {
             text-align: center;
-            margin-bottom: 2rem;
-            padding: 1.5rem 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem 0.8rem;
             background: white;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border-bottom: 4px solid var(--primary);
         }
 
-        .teacher-info {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            display: inline-block;
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
-        }
-
         .logo-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             margin-bottom: 1rem;
             flex-wrap: wrap;
         }
 
         .logo {
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             flex-shrink: 0;
         }
 
         h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             line-height: 1.3;
             font-weight: 800;
         }
 
         .subtitle {
             color: var(--text-secondary);
-            font-size: 1rem;
-            max-width: 600px;
+            font-size: 0.9rem;
+            max-width: 100%;
             margin: 0 auto;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
+        .teacher-info {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+        }
+
+        /* Progress */
         .progress-section {
             background: white;
             border-radius: var(--radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            padding: 1.2rem 1rem;
+            margin-bottom: 1.2rem;
             box-shadow: var(--shadow);
         }
 
@@ -121,11 +127,11 @@ test
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .progress-header h2 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
         }
 
@@ -135,7 +141,7 @@ test
             background: #e9ecef;
             border-radius: 5px;
             overflow: hidden;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
         }
 
         .progress-bar {
@@ -150,14 +156,17 @@ test
             justify-content: space-between;
             margin-top: 0.5rem;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
+        /* Units Grid */
         .units-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.2rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .unit-card {
@@ -168,6 +177,7 @@ test
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             border: 2px solid transparent;
+            min-height: 180px;
         }
 
         .unit-card:hover {
@@ -179,18 +189,13 @@ test
             border-color: var(--secondary);
         }
 
-        .unit-card.locked {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
         .unit-color-bar {
             height: 5px;
             width: 100%;
         }
 
         .unit-header {
-            padding: 1.2rem;
+            padding: 1rem 0.9rem;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -198,8 +203,8 @@ test
         }
 
         .unit-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             font-weight: 700;
@@ -208,32 +213,32 @@ test
 
         .unit-info p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 400;
             line-height: 1.4;
         }
 
         .unit-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: white;
             flex-shrink: 0;
         }
 
         .unit-progress {
-            padding: 1rem 1.2rem;
+            padding: 0.9rem 1rem;
         }
 
         .progress-label {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
@@ -243,7 +248,7 @@ test
             background: #e9ecef;
             border-radius: 4px;
             overflow: hidden;
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
         }
 
         .unit-progress-fill {
@@ -253,14 +258,16 @@ test
         }
 
         .unit-actions {
-            padding: 1.2rem;
+            padding: 1rem;
             display: flex;
-            gap: 0.8rem;
+            flex-direction: column;
+            gap: 0.6rem;
             border-top: 1px solid var(--border);
         }
 
+        /* Buttons */
         .btn {
-            padding: 0.6rem 1rem;
+            padding: 0.8rem 1rem;
             border: none;
             border-radius: 8px;
             font-family: 'Inter', sans-serif;
@@ -268,11 +275,14 @@ test
             cursor: pointer;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
-            font-size: 0.85rem;
-            flex: 1;
-            justify-content: center;
+            font-size: 0.9rem;
+            width: 100%;
+            min-height: 44px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-primary {
@@ -301,96 +311,93 @@ test
             cursor: not-allowed;
         }
 
+        /* Final Test */
         .final-test-section {
             background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%);
             border-radius: var(--radius);
-            padding: 1.8rem 1.5rem;
+            padding: 1.5rem 1rem;
             color: white;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
         }
 
-        .final-test-section.locked {
-            opacity: 0.9;
-        }
-
         .test-badge {
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: 0.8rem;
+            left: 0.8rem;
             background: rgba(255, 255, 255, 0.2);
-            padding: 0.4rem 0.8rem;
+            padding: 0.3rem 0.6rem;
             border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
+            gap: 0.4rem;
+            font-size: 0.8rem;
             backdrop-filter: blur(10px);
         }
 
         .test-content h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
             font-weight: 700;
         }
 
         .test-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 0.8rem;
-            margin: 1.5rem 0;
+            margin: 1.2rem 0;
         }
 
         .stat-item {
             background: rgba(255, 255, 255, 0.1);
-            padding: 0.8rem;
+            padding: 0.7rem;
             border-radius: 8px;
             text-align: center;
             backdrop-filter: blur(10px);
         }
 
         .stat-number {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .test-actions {
             display: flex;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
         }
 
         .password-access {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
-            padding: 1.2rem;
-            margin-top: 1.5rem;
+            padding: 1rem;
+            margin-top: 1.2rem;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .password-input-group {
             display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
         }
 
         .password-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 0.7rem 1rem;
+            width: 100%;
+            padding: 0.8rem;
             border: none;
             border-radius: 8px;
             font-family: 'Almarai', sans-serif;
-            font-size: 1rem;
+            font-size: 16px;
             background: rgba(255, 255, 255, 0.9);
-            min-height: 45px;
+            min-height: 44px;
         }
 
+        /* Modals */
         .modal {
             position: fixed;
             top: 0;
@@ -403,6 +410,8 @@ test
             justify-content: center;
             z-index: 1000;
             padding: 10px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .modal.active {
@@ -413,7 +422,7 @@ test
             background: white;
             border-radius: var(--radius);
             width: 100%;
-            max-width: 900px;
+            max-width: 100%;
             max-height: 90vh;
             display: flex;
             flex-direction: column;
@@ -422,7 +431,7 @@ test
         }
 
         .modal-header {
-            padding: 1.2rem;
+            padding: 1rem;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
@@ -431,6 +440,9 @@ test
             color: white;
             border-radius: var(--radius) var(--radius) 0 0;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         .modal-close {
@@ -449,26 +461,24 @@ test
             flex-shrink: 0;
         }
 
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
         .modal-body {
-            padding: 1.5rem;
+            padding: 1rem;
             overflow-y: auto;
             flex: 1;
+            -webkit-overflow-scrolling: touch;
         }
 
+        /* Questions */
         .unit-questions-container {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .unit-question-card {
             background: white;
             border-radius: 10px;
-            padding: 1.2rem;
+            padding: 1rem;
             border: 2px solid var(--border);
             transition: all 0.3s ease;
         }
@@ -489,14 +499,14 @@ test
 
         .question-header {
             display: flex;
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
         }
 
         .question-number {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             border-radius: 50%;
             display: flex;
@@ -505,21 +515,23 @@ test
             color: white;
             font-weight: 700;
             flex-shrink: 0;
+            font-size: 0.9rem;
         }
 
         .question-text {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             margin-bottom: 0.4rem;
             color: var(--text-primary);
             line-height: 1.4;
+            flex: 1;
         }
 
         .question-type {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--primary);
             background: rgba(67, 97, 238, 0.1);
-            padding: 0.2rem 0.7rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 20px;
             display: inline-block;
         }
@@ -527,18 +539,20 @@ test
         .options-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 0.7rem;
+            gap: 0.6rem;
         }
 
         .option {
-            padding: 0.9rem 1rem;
+            padding: 0.8rem;
             border: 2px solid var(--border);
             border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.6rem;
             transition: all 0.3s ease;
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .option:hover {
@@ -566,8 +580,8 @@ test
         }
 
         .option-letter {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             background: #f8f9fa;
             display: flex;
@@ -576,6 +590,7 @@ test
             font-weight: 700;
             color: var(--text-primary);
             flex-shrink: 0;
+            font-size: 0.85rem;
         }
 
         .option.correct .option-letter {
@@ -588,9 +603,10 @@ test
             color: white;
         }
 
+        /* Feedback */
         .feedback-container {
-            margin-top: 1.2rem;
-            padding: 1.2rem;
+            margin-top: 1rem;
+            padding: 1rem;
             background: #f8f9fa;
             border-radius: 8px;
             border-right: 4px solid var(--primary);
@@ -601,17 +617,18 @@ test
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
         }
 
         .feedback-icon {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
         .feedback-icon.correct {
@@ -625,23 +642,23 @@ test
         }
 
         .feedback-section {
-            margin-top: 0.8rem;
+            margin-top: 0.6rem;
         }
 
         .feedback-section-title {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.4rem;
+            gap: 0.4rem;
+            margin-bottom: 0.3rem;
             color: var(--primary);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        /* أنماط الاختبار النهائي */
+        /* Test Sections */
         .test-section {
-            margin-bottom: 2rem;
-            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
             background: white;
             border-radius: 10px;
             border: 2px solid var(--border);
@@ -650,60 +667,61 @@ test
         .section-header {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
-            padding-bottom: 1rem;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
             border-bottom: 2px solid var(--border);
             flex-wrap: wrap;
         }
 
         .section-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: white;
             flex-shrink: 0;
         }
 
         .section-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-primary);
             margin: 0;
             font-weight: 700;
+            flex: 1;
         }
 
         .section-score {
-            margin-right: auto;
             background: var(--primary);
             color: white;
-            padding: 0.3rem 0.8rem;
+            padding: 0.3rem 0.6rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             flex-shrink: 0;
         }
 
-        /* أنماط قسم المفردات الجديد */
+        /* Vocabulary */
         .vocabulary-section {
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
         }
 
         .matching-instruction {
             background: #f0f7ff;
-            padding: 0.9rem;
+            padding: 0.8rem;
             border-radius: 8px;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             border-right: 4px solid var(--primary);
+            font-size: 0.9rem;
         }
 
         .matching-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 1rem;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin-top: 0.8rem;
         }
 
         .matching-column {
@@ -714,14 +732,14 @@ test
         .matching-items {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
 
         .matching-item {
             display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 0.9rem;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding: 0.8rem;
             background: white;
             border: 2px solid var(--border);
             border-radius: 8px;
@@ -739,8 +757,8 @@ test
         }
 
         .matching-number {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
@@ -749,32 +767,33 @@ test
             justify-content: center;
             font-weight: 700;
             flex-shrink: 0;
+            font-size: 0.9rem;
         }
 
         .matching-word {
             flex: 1;
             font-weight: 600;
             color: var(--text-primary);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .matching-answer {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            min-width: 130px;
+            width: 100%;
         }
 
         .matching-select {
-            padding: 0.5rem 0.8rem;
+            width: 100%;
+            padding: 0.5rem;
             border: 2px solid var(--border);
             border-radius: 6px;
             font-family: 'Almarai', sans-serif;
             font-size: 0.9rem;
             background: white;
-            min-width: 100px;
             cursor: pointer;
-            min-height: 38px;
+            min-height: 40px;
         }
 
         .matching-select:focus {
@@ -783,8 +802,8 @@ test
         }
 
         .answer-feedback {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -793,37 +812,32 @@ test
 
         .answer-feedback .correct {
             color: var(--secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .answer-feedback .incorrect {
             color: var(--error);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .images-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
         }
 
         .image-item {
             background: white;
             border: 2px solid var(--border);
             border-radius: 8px;
-            padding: 0.8rem;
+            padding: 0.6rem;
             text-align: center;
             transition: transform 0.3s ease;
         }
 
-        .image-item:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary);
-        }
-
         .image-letter {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
@@ -831,36 +845,38 @@ test
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            margin: 0 auto 0.5rem;
+            margin: 0 auto 0.4rem;
+            font-size: 0.9rem;
         }
 
         .matching-image {
             width: 100%;
-            height: 100px;
+            height: 80px;
             object-fit: cover;
             border-radius: 6px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .image-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-primary);
             font-weight: 600;
         }
 
         .answer-key {
-            margin-top: 1.5rem;
-            padding: 0.9rem;
+            margin-top: 1.2rem;
+            padding: 0.8rem;
             background: #f8f9fa;
             border-radius: 8px;
             border-right: 4px solid var(--secondary);
+            font-size: 0.85rem;
         }
 
         .answer-key-item {
             background: white;
-            padding: 0.3rem 0.7rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             border: 1px solid var(--border);
             color: var(--text-secondary);
             display: inline-block;
@@ -868,27 +884,25 @@ test
         }
 
         .progress-stats {
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 1rem;
         }
 
-        /* أسئلة صح/خطأ */
+        /* True/False */
         .true-false-container {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
-            margin-top: 1.2rem;
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
         .true-false-question {
             display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-            padding: 1.2rem;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding: 1rem;
             background: #f8f9fa;
             border-radius: 8px;
             border: 2px solid var(--border);
@@ -896,20 +910,25 @@ test
 
         .tf-options {
             display: flex;
-            gap: 0.8rem;
-            margin-top: 0.8rem;
+            gap: 0.6rem;
+            margin-top: 0.6rem;
             flex-wrap: wrap;
         }
 
         .tf-option {
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1rem;
             border: 2px solid var(--border);
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
-            min-width: 70px;
+            flex: 1;
             text-align: center;
+            min-width: 80px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .tf-option.selected {
@@ -930,24 +949,26 @@ test
             color: var(--error);
         }
 
+        /* Writing */
         .writing-container {
-            margin-top: 1.2rem;
+            margin-top: 1rem;
         }
 
         .writing-instruction {
             background: #f8f9fa;
-            padding: 0.9rem;
+            padding: 0.8rem;
             border-radius: 8px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             border-right: 4px solid var(--primary);
+            font-size: 0.9rem;
         }
 
         .words-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.8rem 0;
-            padding: 0.9rem;
+            gap: 0.4rem;
+            margin: 0.6rem 0;
+            padding: 0.8rem;
             background: #f0f7ff;
             border-radius: 8px;
         }
@@ -955,274 +976,61 @@ test
         .word-tag {
             background: var(--primary);
             color: white;
-            padding: 0.3rem 0.7rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .writing-textarea {
             width: 100%;
-            height: 150px;
-            padding: 0.9rem;
+            height: 140px;
+            padding: 0.8rem;
             border: 2px solid var(--border);
             border-radius: 8px;
             font-family: 'Almarai', sans-serif;
-            font-size: 0.95rem;
-            margin-top: 0.8rem;
+            font-size: 16px;
+            margin-top: 0.6rem;
             resize: vertical;
             min-height: 120px;
+            line-height: 1.4;
         }
 
+        /* Timer */
         .timer-container {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             background: rgba(255, 255, 255, 0.2);
-            padding: 0.4rem 0.8rem;
+            padding: 0.3rem 0.6rem;
             border-radius: 20px;
-            margin-right: 0.8rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            flex-shrink: 0;
         }
 
+        /* Footer */
         .footer {
             text-align: center;
-            margin-top: 2.5rem;
-            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            padding: 1.2rem 0.8rem;
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             border-top: 1px solid var(--border);
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* وسائط الاستجابة للجوال */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px 8px;
-                font-size: 15px;
-            }
-            
-            .container {
-                padding: 0;
-            }
-            
-            header {
-                padding: 1.2rem 0.8rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            .subtitle {
-                font-size: 0.95rem;
-            }
-            
-            .teacher-info {
-                font-size: 1rem;
-                padding: 0.6rem 0.8rem;
-            }
-            
-            .logo {
-                width: 50px;
-                height: 50px;
-                font-size: 1.4rem;
-            }
-            
-            .units-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .unit-info h3 {
-                font-size: 1.2rem;
-            }
-            
-            .unit-header {
-                padding: 1rem;
-            }
-            
-            .unit-actions {
-                padding: 1rem;
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-                padding: 0.7rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .test-actions {
-                flex-direction: column;
-            }
-            
-            .password-input-group {
-                flex-direction: column;
-            }
-            
-            .password-input {
-                min-width: 100%;
-            }
-            
-            .modal-content {
-                max-height: 95vh;
-                max-width: 100%;
-                border-radius: 10px;
-            }
-            
-            .modal-body {
-                padding: 1rem;
-            }
-            
-            .modal-header {
-                padding: 1rem;
-            }
-            
-            .question-text {
-                font-size: 0.95rem;
-            }
-            
-            .option {
-                padding: 0.8rem;
-            }
-            
-            .test-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .matching-container {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .matching-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .matching-answer {
-                width: 100%;
-                margin-top: 0.5rem;
-            }
-            
-            .images-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-            
-            .section-score {
-                margin-right: 0;
-                align-self: flex-start;
-            }
-            
-            .progress-stats {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .tf-options {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .tf-option {
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 8px 5px;
-                font-size: 14px;
-            }
-            
-            h1 {
-                font-size: 1.4rem;
-            }
-            
-            .logo {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
-            
-            .progress-section {
-                padding: 1.2rem 1rem;
-            }
-            
-            .test-content h3 {
-                font-size: 1.4rem;
-            }
-            
-            .stat-item {
-                padding: 0.7rem;
-            }
-            
-            .stat-number {
-                font-size: 1.4rem;
-            }
-            
-            .images-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .matching-image {
-                height: 120px;
-            }
-            
-            .option-letter {
-                width: 26px;
-                height: 26px;
-                font-size: 0.9rem;
-            }
-            
-            .question-number {
-                width: 32px;
-                height: 32px;
-                font-size: 0.9rem;
-            }
-            
-            .writing-textarea {
-                height: 120px;
-            }
-            
-            .footer {
-                padding: 1.2rem 0.8rem;
-                font-size: 0.8rem;
-            }
-        }
-
-        /* أنماط جديدة للنماذج الجاهزة */
+        /* Sample Answers */
         .sample-answers {
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             background: #f0f9ff;
             border-radius: 8px;
-            padding: 1rem;
+            padding: 0.8rem;
             border: 2px dashed #4361ee;
         }
 
         .sample-answer {
             background: white;
             border-radius: 6px;
-            padding: 0.8rem;
-            margin: 0.5rem 0;
+            padding: 0.7rem;
+            margin: 0.4rem 0;
             border: 1px solid #e0e0e0;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1235,23 +1043,194 @@ test
 
         .sample-answer h5 {
             color: #4361ee;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            font-size: 0.9rem;
         }
 
         .sample-answer-content {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #333;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .used-words {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #06d6a0;
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
             font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 15px 10px;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .units-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+            
+            .unit-card {
+                min-height: 200px;
+            }
+            
+            .unit-info h3 {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                width: auto;
+                min-width: 120px;
+            }
+            
+            .unit-actions {
+                flex-direction: row;
+            }
+            
+            .test-actions {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .password-input-group {
+                flex-direction: row;
+            }
+            
+            .password-input {
+                min-width: 200px;
+            }
+            
+            .modal-content {
+                max-width: 90%;
+            }
+            
+            .matching-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .matching-item {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .images-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .matching-image {
+                height: 100px;
+            }
+            
+            .test-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .tf-options {
+                flex-direction: row;
+            }
+            
+            .progress-stats {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .units-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .modal-content {
+                max-width: 900px;
+            }
+            
+            .test-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Very Small Screens */
+        @media (max-width: 360px) {
+            body {
+                font-size: 14px;
+                padding: 8px 5px;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .unit-info h3 {
+                font-size: 1rem;
+            }
+            
+            .option, .tf-option {
+                min-height: 42px;
+            }
+            
+            .btn {
+                min-height: 42px;
+                padding: 0.7rem 0.8rem;
+            }
+            
+            .images-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Prevent iOS zoom on input focus */
+        @media (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+
+        /* Smooth scrolling for iOS */
+        .modal-body, .unit-questions-container {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Prevent text selection on buttons */
+        .btn, .option, .tf-option {
+            user-select: none;
+            -webkit-user-select: none;
         }
     </style>
 </head>
@@ -1288,7 +1267,7 @@ test
         </section>
 
         <section>
-            <h2 style="margin-bottom: 1.2rem; color: var(--text-primary); font-size: 1.4rem;">الوحدات التعليمية</h2>
+            <h2 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 1.2rem;">الوحدات التعليمية</h2>
             <div class="units-grid" id="unitsGrid">
                 <!-- سيتم تعبئة الوحدات هنا -->
             </div>
@@ -1301,7 +1280,7 @@ test
             </div>
             <div class="test-content">
                 <h3>الاختبار النهائي الشامل</h3>
-                <p>اختبار شامل يغطي جميع مواضيع الوحدات من 1 إلى 6</p>
+                <p style="font-size: 0.9rem;">اختبار شامل يغطي جميع مواضيع الوحدات من 1 إلى 6</p>
                 
                 <div class="test-stats">
                     <div class="stat-item">
@@ -1338,8 +1317,8 @@ test
                 </div>
 
                 <div class="password-access" id="passwordAccess" style="display: none;">
-                    <h4 style="margin-bottom: 0.8rem; font-size: 1.1rem;">الدخول بكلمة مرور</h4>
-                    <p style="margin-bottom: 0.8rem; font-size: 0.9rem;">أدخل كلمة المرور للوصول إلى الاختبار النهائي مباشرة:</p>
+                    <h4 style="margin-bottom: 0.6rem; font-size: 1rem;">الدخول بكلمة مرور</h4>
+                    <p style="margin-bottom: 0.6rem; font-size: 0.85rem;">أدخل كلمة المرور للوصول إلى الاختبار النهائي مباشرة:</p>
                     <div class="password-input-group">
                         <input type="password" class="password-input" id="passwordInput" placeholder="أدخل كلمة المرور">
                         <button class="btn btn-primary" onclick="app.checkPassword()">
@@ -1347,15 +1326,15 @@ test
                             فتح
                         </button>
                     </div>
-                    <p id="passwordMessage" style="margin-top: 0.8rem; font-size: 0.9rem; display: none;"></p>
+                    <p id="passwordMessage" style="margin-top: 0.6rem; font-size: 0.85rem; display: none;"></p>
                 </div>
             </div>
         </section>
 
         <footer class="footer">
             <p>© 2024 Super Goal 3 Interactive Learning System</p>
-            <p style="margin-top: 0.5rem; color: var(--primary); font-weight: 600;">إعداد وتصميم: معلم المادة فهد الخالدي</p>
-            <button class="btn btn-secondary" onclick="app.resetProgress()" style="margin-top: 1rem; max-width: 200px; margin-left: auto; margin-right: auto;">
+            <p style="margin-top: 0.4rem; color: var(--primary); font-weight: 600;">إعداد وتصميم: معلم المادة فهد الخالدي</p>
+            <button class="btn btn-secondary" onclick="app.resetProgress()" style="margin-top: 0.8rem; max-width: 200px; margin-left: auto; margin-right: auto;">
                 <i class="fas fa-redo"></i>
                 إعادة تعيين التقدم
             </button>
@@ -1377,12 +1356,12 @@ test
                     <!-- سيتم تعبئة الأسئلة هنا -->
                 </div>
             </div>
-            <div style="padding: 1.2rem; border-top: 1px solid var(--border); text-align: center;">
-                <button class="btn btn-primary" onclick="app.checkAllQuestions()" style="padding: 0.8rem 2rem; font-size: 1rem;">
+            <div style="padding: 1rem; border-top: 1px solid var(--border); text-align: center;">
+                <button class="btn btn-primary" onclick="app.checkAllQuestions()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin-bottom: 0.5rem;">
                     <i class="fas fa-check-circle"></i>
                     إنهاء الوحدة
                 </button>
-                <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                <div style="color: var(--text-secondary); font-size: 0.85rem;">
                     <span id="unitProgressText">0/5 أسئلة مجابة</span>
                 </div>
             </div>
@@ -1393,8 +1372,8 @@ test
     <div class="modal" id="finalTestModal">
         <div class="modal-content">
             <div class="modal-header">
-                <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-                    <h3 style="margin: 0;">الاختبار النهائي الشامل</h3>
+                <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; width: 100%;">
+                    <h3 style="margin: 0; flex: 1; font-size: 1.1rem;">الاختبار النهائي الشامل</h3>
                     <div class="timer-container">
                         <i class="fas fa-clock"></i>
                         <span id="timeRemaining">60:00</span>
@@ -1405,12 +1384,12 @@ test
             <div class="modal-body" id="finalTestContent">
                 <!-- سيتم تعبئة محتوى الاختبار هنا -->
             </div>
-            <div style="padding: 1.2rem; border-top: 1px solid var(--border); text-align: center;">
-                <button class="btn btn-success" onclick="app.submitFinalTest()" style="padding: 0.8rem 2rem; font-size: 1rem;">
+            <div style="padding: 1rem; border-top: 1px solid var(--border); text-align: center;">
+                <button class="btn btn-success" onclick="app.submitFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin-bottom: 0.5rem;">
                     <i class="fas fa-paper-plane"></i>
                     تسليم الاختبار
                 </button>
-                <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                <div style="color: var(--text-secondary); font-size: 0.85rem;">
                     <span id="testProgressText">0/40 سؤالاً مجاباً</span>
                 </div>
             </div>
@@ -1418,7 +1397,7 @@ test
     </div>
 
     <script>
-        // بيانات الوحدات مع التعديلات المطلوبة (العنوان باللغة الإنجليزية والوصف بالعربية)
+        // البيانات تبقى كما هي بدون تغيير
         const unitsData = [
             {
                 id: 1,
@@ -1476,7 +1455,6 @@ test
             }
         ];
 
-        // بيانات أسئلة الوحدات
         const unitQuestionsData = {
             1: [
                 {
@@ -1887,7 +1865,6 @@ test
             ]
         };
 
-        // بيانات الاختبار النهائي
         const finalTestData = {
             grammar: [
                 {
@@ -2102,7 +2079,6 @@ test
             }
         };
 
-        // صور المفردات
         const vocabularyImages = [
             { code: "A", image: "https://i.ibb.co/bgBqr2vp/IMG-2038.jpg", label: "A. avocado" },
             { code: "B", image: "https://i.ibb.co/C3SrJVVT/IMG-2037.jpg", label: "B. cereal" },
@@ -2115,7 +2091,6 @@ test
             { code: "I", image: "https://i.ibb.co/P0g70Ls/IMG-2030.jpg", label: "I. shrimp" }
         ];
 
-        // 3 نماذج جاهزة للكتابة
         const writingSamples = [
             {
                 title: "النموذج الأول (عن الرياضة)",
@@ -2153,7 +2128,7 @@ test
                 this.unlocked = false;
                 this.passwordUnlocked = false;
                 this.testTimer = null;
-                this.timeRemaining = 60 * 60; // 60 دقيقة بالثواني
+                this.timeRemaining = 60 * 60;
                 this.init();
             }
 
@@ -2181,7 +2156,6 @@ test
                     this.finalTestScore = data.finalTestScore || 0;
                     this.passwordUnlocked = data.passwordUnlocked || false;
                     
-                    // تحديث تقدم الوحدات بناءً على الإجابات المحفوظة
                     this.units.forEach(unit => {
                         const unitAnswers = this.unitAnswers[unit.id];
                         if (unitAnswers) {
@@ -2303,38 +2277,31 @@ test
             }
 
             updateFinalTestProgress() {
-                // حساب عدد الأسئلة المجابة في الاختبار النهائي
                 let totalAnswered = 0;
                 let totalQuestions = 0;
                 
-                // قسم القواعد
                 totalAnswered += Object.keys(this.finalTestAnswers.grammar).length;
                 totalQuestions += finalTestData.grammar.length;
                 
-                // قسم الإملاء
                 totalAnswered += Object.keys(this.finalTestAnswers.orthography).length;
                 totalQuestions += finalTestData.orthography.length;
                 
-                // قسم المفردات
                 totalAnswered += Object.keys(this.finalTestAnswers.vocabulary).length;
                 totalQuestions += finalTestData.vocabulary.length;
                 
-                // قسم القراءة
                 totalAnswered += Object.keys(this.finalTestAnswers.reading).length;
                 totalQuestions += finalTestData.reading.length;
                 
-                // قسم الكتابة
                 if (this.finalTestAnswers.writing && this.finalTestAnswers.writing.trim().length > 0) {
-                    totalAnswered += 1; // الكتابة تعتبر سؤالاً واحداً مجاباً
+                    totalAnswered += 1;
                 }
-                totalQuestions += 1; // قسم الكتابة يعتبر سؤالاً واحداً
+                totalQuestions += 1;
                 
                 const testProgress = Math.round((totalAnswered / totalQuestions) * 100);
                 
                 document.getElementById('testQuestionsAnswered').textContent = totalAnswered;
                 document.getElementById('testProgress').textContent = `${testProgress}%`;
                 
-                // تحديث نص التقدم في نموذج الاختبار إذا كان مفتوحاً
                 const testProgressText = document.getElementById('testProgressText');
                 if (testProgressText) {
                     testProgressText.textContent = `${totalAnswered}/${totalQuestions} سؤالاً مجاباً`;
@@ -2372,10 +2339,8 @@ test
                 
                 const questions = unitQuestionsData[unit.id];
                 
-                // حساب عدد الأسئلة المجابة
                 const answeredCount = Object.keys(this.unitAnswers[unit.id]?.answers || {}).length;
                 
-                // تحديث نص التقدم
                 document.getElementById('unitProgressText').textContent = `${answeredCount}/${unit.questionsNeeded} أسئلة مجابة`;
                 
                 questions.forEach((question, index) => {
@@ -2394,7 +2359,7 @@ test
                     questionCard.innerHTML = `
                         <div class="question-header">
                             <div class="question-number">${index + 1}</div>
-                            <div>
+                            <div style="flex: 1;">
                                 <div class="question-text">${question.question}</div>
                                 <div class="question-type">${questionType}</div>
                             </div>
@@ -2509,7 +2474,6 @@ test
                     questionCard.insertAdjacentHTML('beforeend', feedbackHTML);
                 }
                 
-                // تحديث نص التقدم
                 document.getElementById('unitProgressText').textContent = `${answeredCount}/${unit.questionsNeeded} أسئلة مجابة`;
                 
                 this.saveProgress();
@@ -2548,7 +2512,7 @@ test
                 const container = document.getElementById('finalTestContent');
                 container.innerHTML = '';
                 
-                // قسم القواعد (9 أسئلة)
+                // Grammar Section
                 const grammarSection = this.createTestSection(
                     "القواعد (Grammar)",
                     "fas fa-language",
@@ -2566,7 +2530,7 @@ test
                     questionElement.innerHTML = `
                         <div class="question-header">
                             <div class="question-number">${index + 1}</div>
-                            <div>
+                            <div style="flex: 1;">
                                 <div class="question-text">${question.question}</div>
                                 <div class="question-type">اختر الإجابة الصحيحة</div>
                             </div>
@@ -2598,7 +2562,7 @@ test
                 
                 container.appendChild(grammarSection);
                 
-                // قسم الإملاء (5 أسئلة)
+                // Orthography Section
                 const orthographySection = this.createTestSection(
                     "الإملاء (Orthography)",
                     "fas fa-spell-check",
@@ -2616,7 +2580,7 @@ test
                     questionElement.innerHTML = `
                         <div class="question-header">
                             <div class="question-number">${index + 10}</div>
-                            <div>
+                            <div style="flex: 1;">
                                 <div class="question-text">${question.question}</div>
                                 <div class="question-type">اختر الحرف الصحيح لإكمال الكلمة</div>
                             </div>
@@ -2648,7 +2612,7 @@ test
                 
                 container.appendChild(orthographySection);
                 
-                // قسم المفردات (9 أسئلة)
+                // Vocabulary Section
                 const vocabularySection = this.createTestSection(
                     "المفردات (Vocabulary)",
                     "fas fa-book",
@@ -2667,14 +2631,15 @@ test
                     </div>
                     
                     <div class="matching-container">
-                        <!-- الجزء الأيسر: الكلمات -->
                         <div class="matching-column">
-                            <h4 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">الكلمات</h4>
+                            <h4 style="color: var(--primary); margin-bottom: 1rem; text-align: center; font-size: 1rem;">الكلمات</h4>
                             <div class="matching-items" id="vocabularyWords">
                                 ${finalTestData.vocabulary.map((item, index) => `
                                     <div class="matching-item" data-id="${item.id}" id="vocab-item-${item.id}">
-                                        <div class="matching-number">${index + 1}</div>
-                                        <div class="matching-word">${item.word}</div>
+                                        <div style="display: flex; align-items: center; gap: 0.6rem;">
+                                            <div class="matching-number">${index + 1}</div>
+                                            <div class="matching-word">${item.word}</div>
+                                        </div>
                                         <div class="matching-answer">
                                             <select class="matching-select" 
                                                     onchange="app.selectVocabularyAnswer(${item.id}, this.value)"
@@ -2698,9 +2663,8 @@ test
                             </div>
                         </div>
                         
-                        <!-- الجزء الأيمن: الصور -->
                         <div class="matching-column">
-                            <h4 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">الصور</h4>
+                            <h4 style="color: var(--primary); margin-bottom: 1rem; text-align: center; font-size: 1rem;">الصور</h4>
                             <div class="images-grid">
                                 ${vocabularyImages.map(item => `
                                     <div class="image-item">
@@ -2714,12 +2678,11 @@ test
                                 `).join('')}
                             </div>
                             
-                            <!-- مفتاح الإجابات -->
                             <div class="answer-key">
-                                <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">
+                                <h5 style="color: var(--text-primary); margin-bottom: 0.4rem; font-size: 0.9rem;">
                                     <i class="fas fa-key"></i> مفتاح الإجابات:
                                 </h5>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
                                     ${finalTestData.vocabulary.map(item => 
                                         `<span class="answer-key-item" data-correct="${item.correctMatch}">
                                             ${item.word} → ${item.correctMatch}
@@ -2730,22 +2693,21 @@ test
                         </div>
                     </div>
                     
-                    <!-- إحصائيات التقدم -->
                     <div class="progress-stats">
-                        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
                             <div style="text-align: center;">
-                                <div style="font-size: 1.3rem; font-weight: 700; color: var(--primary);" id="vocabAnsweredCount">
+                                <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary);" id="vocabAnsweredCount">
                                     ${Object.keys(this.finalTestAnswers.vocabulary).filter(k => this.finalTestAnswers.vocabulary[k]).length}/9
                                 </div>
-                                <div style="font-size: 0.85rem; color: var(--text-secondary);">تمت الإجابة</div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">تمت الإجابة</div>
                             </div>
                             <div style="text-align: center;">
-                                <div style="font-size: 1.3rem; font-weight: 700; color: var(--secondary);" id="vocabCorrectCount">
+                                <div style="font-size: 1.2rem; font-weight: 700; color: var(--secondary);" id="vocabCorrectCount">
                                     ${finalTestData.vocabulary.filter(item => 
                                         this.finalTestAnswers.vocabulary[item.id] === item.correctMatch
                                     ).length}
                                 </div>
-                                <div style="font-size: 0.85rem; color: var(--text-secondary);">إجابات صحيحة</div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">إجابات صحيحة</div>
                             </div>
                         </div>
                         
@@ -2759,7 +2721,7 @@ test
                 vocabularySection.appendChild(vocabularyContent);
                 container.appendChild(vocabularySection);
                 
-                // قسم القراءة (9 أسئلة)
+                // Reading Section
                 const readingSection = this.createTestSection(
                     "القراءة (Reading)",
                     "fas fa-book-reader",
@@ -2767,21 +2729,19 @@ test
                     "9 درجات"
                 );
                 
-                // نص القراءة
                 const readingText = document.createElement('div');
                 readingText.className = 'writing-instruction';
                 readingText.innerHTML = `
-                    <h4>اقرأ الفقرة التالية:</h4>
-                    <p style="margin-top: 1rem; line-height: 1.6;">
+                    <h4 style="font-size: 1rem;">اقرأ الفقرة التالية:</h4>
+                    <p style="margin-top: 0.8rem; line-height: 1.5; font-size: 0.9rem;">
                         King Salman bin Abdulaziz was born in Riyadh. He studied religion, science, and the Holy Qur'an at the Princes' School. 
                         He became King of Saudi Arabia in 2015. He helped Riyadh grow from a small town into a major modern city. 
                         He also supported humanitarian and cultural projects inside and outside the Kingdom.
                     </p>
-                    <p style="margin-top: 1rem; font-weight: 600;">اكتب T للجملة الصحيحة أو F للجملة الخاطئة:</p>
+                    <p style="margin-top: 0.8rem; font-weight: 600; font-size: 0.9rem;">اكتب T للجملة الصحيحة أو F للجملة الخاطئة:</p>
                 `;
                 readingSection.appendChild(readingText);
                 
-                // أسئلة القراءة
                 const readingQuestions = document.createElement('div');
                 readingQuestions.className = 'true-false-container';
                 
@@ -2793,29 +2753,31 @@ test
                     const questionElement = document.createElement('div');
                     questionElement.className = `true-false-question ${isAnswered ? 'answered' : ''} ${isCorrect ? 'correct' : isAnswered && !isCorrect ? 'incorrect' : ''}`;
                     questionElement.innerHTML = `
-                        <div class="question-number">${index + 19}</div>
-                        <div style="flex: 1;">
-                            <div class="question-text">${question.question}</div>
-                            <div class="tf-options">
-                                <div class="tf-option ${isAnswered && selectedAnswer === true ? (isCorrect ? 'correct' : 'incorrect') : ''} ${isAnswered && selectedAnswer === true ? 'selected' : ''}" 
-                                     onclick="app.selectTrueFalseAnswer(${question.id}, true)">
-                                    T (صح)
-                                </div>
-                                <div class="tf-option ${isAnswered && selectedAnswer === false ? (isCorrect ? 'correct' : 'incorrect') : ''} ${isAnswered && selectedAnswer === false ? 'selected' : ''}" 
-                                     onclick="app.selectTrueFalseAnswer(${question.id}, false)">
-                                    F (خطأ)
+                        <div style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                            <div class="question-number">${index + 19}</div>
+                            <div style="flex: 1;">
+                                <div class="question-text" style="font-size: 0.9rem;">${question.question}</div>
+                                <div class="tf-options">
+                                    <div class="tf-option ${isAnswered && selectedAnswer === true ? (isCorrect ? 'correct' : 'incorrect') : ''} ${isAnswered && selectedAnswer === true ? 'selected' : ''}" 
+                                         onclick="app.selectTrueFalseAnswer(${question.id}, true)">
+                                        T (صح)
+                                    </div>
+                                    <div class="tf-option ${isAnswered && selectedAnswer === false ? (isCorrect ? 'correct' : 'incorrect') : ''} ${isAnswered && selectedAnswer === false ? 'selected' : ''}" 
+                                         onclick="app.selectTrueFalseAnswer(${question.id}, false)">
+                                        F (خطأ)
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         ${isAnswered ? `
-                            <div style="margin-top: 1rem; padding: 0.8rem; background: #f8f9fa; border-radius: 6px; border-right: 3px solid ${isCorrect ? 'var(--secondary)' : 'var(--error)'};">
-                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-                                    <div style="width: 24px; height: 24px; border-radius: 50%; background: ${isCorrect ? 'var(--secondary)' : 'var(--error)'}; color: white; display: flex; align-items: center; justify-content: center;">
+                            <div style="margin-top: 0.8rem; padding: 0.7rem; background: #f8f9fa; border-radius: 6px; border-right: 3px solid ${isCorrect ? 'var(--secondary)' : 'var(--error)'};">
+                                <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.3rem;">
+                                    <div style="width: 22px; height: 22px; border-radius: 50%; background: ${isCorrect ? 'var(--secondary)' : 'var(--error)'}; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
                                         ${isCorrect ? '✓' : '✗'}
                                     </div>
-                                    <strong>${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة!'}</strong>
+                                    <strong style="font-size: 0.9rem;">${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة!'}</strong>
                                 </div>
-                                <div style="font-size: 0.9rem;">${question.explanation}</div>
+                                <div style="font-size: 0.85rem;">${question.explanation}</div>
                             </div>
                         ` : ''}
                     `;
@@ -2825,7 +2787,7 @@ test
                 readingSection.appendChild(readingQuestions);
                 container.appendChild(readingSection);
                 
-                // قسم التعبير الكتابي (8 درجات)
+                // Writing Section
                 const writingSection = this.createTestSection(
                     "التعبير الكتابي (Guided Composition)",
                     "fas fa-edit",
@@ -2837,17 +2799,17 @@ test
                 writingContainer.className = 'writing-container';
                 writingContainer.innerHTML = `
                     <div class="writing-instruction">
-                        <h4>الكتابة الموجهة:</h4>
-                        <p>اكتب فقرة متماسكة من 3–5 جمل باستخدام 8 كلمات من الكلمات التالية:</p>
+                        <h4 style="font-size: 1rem;">الكتابة الموجهة:</h4>
+                        <p style="font-size: 0.9rem;">اكتب فقرة متماسكة من 3–5 جمل باستخدام 8 كلمات من الكلمات التالية:</p>
                         <div class="words-list">
                             ${finalTestData.writing.words.map(word => 
                                 `<span class="word-tag">${word}</span>`
                             ).join('')}
                         </div>
-                        <p><strong>تلميح:</strong> حاول أن تكتب عن موضوع مثل: الرياضة، الصحة، أو الحياة اليومية.</p>
+                        <p style="font-size: 0.9rem;"><strong>تلميح:</strong> حاول أن تكتب عن موضوع مثل: الرياضة، الصحة، أو الحياة اليومية.</p>
                         
                         <div class="sample-answers">
-                            <h5 style="color: var(--primary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <h5 style="color: var(--primary); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem;">
                                 <i class="fas fa-lightbulb"></i>
                                 نماذج جاهزة (يمكنك استخدام أحدها أو الاستلهام منها)
                             </h5>
@@ -2863,7 +2825,7 @@ test
                     <textarea class="writing-textarea" 
                               placeholder="اكتب فقرتك هنا... (3-5 جمل باستخدام 8 كلمات على الأقل من القائمة أعلاه)"
                               oninput="app.updateWritingAnswer(this.value)">${this.finalTestAnswers.writing || ''}</textarea>
-                    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;">
+                    <div style="margin-top: 0.8rem; color: var(--text-secondary); font-size: 0.8rem;">
                         <i class="fas fa-info-circle"></i> سيتم تقييم إجابتك بناء على: استخدام الكلمات المطلوبة، الترابط بين الجمل، القواعد النحوية، ووضوح الأفكار.
                     </div>
                 `;
@@ -2871,7 +2833,6 @@ test
                 writingSection.appendChild(writingContainer);
                 container.appendChild(writingSection);
                 
-                // تحديث نص تقدم الاختبار
                 this.updateFinalTestProgress();
             }
 
@@ -2918,17 +2879,13 @@ test
             }
 
             selectFinalTestAnswer(section, questionId, optionIndex) {
-                // التحقق إذا كانت الإجابة قد تمت مسبقًا
                 if (this.finalTestAnswers[section][questionId] !== undefined) {
-                    // يمكن السماح بالتغيير إذا أردت
-                    // return;
+                    return;
                 }
                 
-                // حفظ الإجابة
                 this.finalTestAnswers[section][questionId] = optionIndex;
                 this.saveProgress();
                 
-                // البحث عن السؤال
                 let question;
                 if (section === 'grammar') {
                     question = finalTestData.grammar.find(q => q.id === questionId);
@@ -2938,10 +2895,8 @@ test
                 
                 if (!question) return;
                 
-                // تحديث الواجهة
                 const isCorrect = optionIndex === question.correctAnswer;
                 
-                // البحث عن عنصر السؤال
                 const questionElements = document.querySelectorAll('.unit-question-card');
                 let targetQuestion;
                 
@@ -2954,10 +2909,8 @@ test
                 }
                 
                 if (targetQuestion) {
-                    // تحديث فئة السؤال
                     targetQuestion.className = `unit-question-card answered ${isCorrect ? 'correct' : 'incorrect'}`;
                     
-                    // تحديث الخيارات
                     const options = targetQuestion.querySelectorAll('.option');
                     options.forEach((opt, idx) => {
                         opt.className = 'option answered';
@@ -2966,13 +2919,11 @@ test
                         if (idx === optionIndex) opt.classList.add('selected');
                     });
                     
-                    // إزالة التغذية الراجعة القديمة إذا وجدت
                     const existingFeedback = targetQuestion.querySelector('.feedback-container');
                     if (existingFeedback) {
                         existingFeedback.remove();
                     }
                     
-                    // إضافة التغذية الراجعة الجديدة
                     const feedbackHTML = this.createFinalTestFeedbackHTML(question, isCorrect);
                     targetQuestion.insertAdjacentHTML('beforeend', feedbackHTML);
                 }
@@ -2987,7 +2938,6 @@ test
                 this.finalTestAnswers.vocabulary[questionId] = value;
                 this.saveProgress();
                 
-                // تحديث العنصر البصري
                 const matchingItem = document.getElementById(`vocab-item-${questionId}`);
                 const feedbackDiv = document.getElementById(`feedback-${questionId}`);
                 
@@ -3006,7 +2956,6 @@ test
                         '<i class="fas fa-times incorrect"></i>';
                 }
                 
-                // تحديث العدادات
                 this.updateVocabularyStats();
                 this.updateFinalTestProgress();
             }
@@ -3038,13 +2987,11 @@ test
                 this.finalTestAnswers.reading[questionId] = value;
                 this.saveProgress();
                 
-                // البحث عن السؤال
                 const question = finalTestData.reading.find(q => q.id === questionId);
                 if (!question) return;
                 
                 const isCorrect = value === question.correctAnswer;
                 
-                // تحديث الواجهة
                 const questionElements = document.querySelectorAll('.true-false-question');
                 let targetQuestion;
                 
@@ -3057,10 +3004,8 @@ test
                 }
                 
                 if (targetQuestion) {
-                    // تحديث فئة السؤال
                     targetQuestion.className = `true-false-question answered ${isCorrect ? 'correct' : 'incorrect'}`;
                     
-                    // تحديث الخيارات
                     const options = targetQuestion.querySelectorAll('.tf-option');
                     options.forEach(opt => {
                         opt.classList.remove('selected', 'correct', 'incorrect');
@@ -3076,22 +3021,20 @@ test
                         }
                     }
                     
-                    // إزالة التغذية الراجعة القديمة إذا وجدت
-                    const existingFeedback = targetQuestion.querySelector('div[style*="margin-top: 1rem"]');
+                    const existingFeedback = targetQuestion.querySelector('div[style*="margin-top: 0.8rem"]');
                     if (existingFeedback) {
                         existingFeedback.remove();
                     }
                     
-                    // إضافة التغذية الراجعة الجديدة
                     const feedbackHTML = `
-                        <div style="margin-top: 1rem; padding: 0.8rem; background: #f8f9fa; border-radius: 6px; border-right: 3px solid ${isCorrect ? 'var(--secondary)' : 'var(--error)'};">
-                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-                                <div style="width: 24px; height: 24px; border-radius: 50%; background: ${isCorrect ? 'var(--secondary)' : 'var(--error)'}; color: white; display: flex; align-items: center; justify-content: center;">
+                        <div style="margin-top: 0.8rem; padding: 0.7rem; background: #f8f9fa; border-radius: 6px; border-right: 3px solid ${isCorrect ? 'var(--secondary)' : 'var(--error)'};">
+                            <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.3rem;">
+                                <div style="width: 22px; height: 22px; border-radius: 50%; background: ${isCorrect ? 'var(--secondary)' : 'var(--error)'}; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
                                     ${isCorrect ? '✓' : '✗'}
                                 </div>
-                                <strong>${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة!'}</strong>
+                                <strong style="font-size: 0.9rem;">${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة!'}</strong>
                             </div>
-                            <div style="font-size: 0.9rem;">${question.explanation}</div>
+                            <div style="font-size: 0.85rem;">${question.explanation}</div>
                         </div>
                     `;
                     
@@ -3163,7 +3106,6 @@ test
                 let maxScore = 40;
                 let details = [];
                 
-                // قسم القواعد (9 درجات)
                 let grammarScore = 0;
                 finalTestData.grammar.forEach(q => {
                     if (this.finalTestAnswers.grammar[q.id] === q.correctAnswer) {
@@ -3173,7 +3115,6 @@ test
                 totalScore += grammarScore;
                 details.push(`القواعد: ${grammarScore}/9`);
                 
-                // قسم الإملاء (5 درجات)
                 let orthographyScore = 0;
                 finalTestData.orthography.forEach(q => {
                     if (this.finalTestAnswers.orthography[q.id] === q.correctAnswer) {
@@ -3183,7 +3124,6 @@ test
                 totalScore += orthographyScore;
                 details.push(`الإملاء: ${orthographyScore}/5`);
                 
-                // قسم المفردات (9 درجات)
                 let vocabularyScore = 0;
                 finalTestData.vocabulary.forEach(item => {
                     if (this.finalTestAnswers.vocabulary[item.id] === item.correctMatch) {
@@ -3193,7 +3133,6 @@ test
                 totalScore += vocabularyScore;
                 details.push(`المفردات: ${vocabularyScore}/9`);
                 
-                // قسم القراءة (9 درجات)
                 let readingScore = 0;
                 finalTestData.reading.forEach(q => {
                     if (this.finalTestAnswers.reading[q.id] === q.correctAnswer) {
@@ -3203,7 +3142,6 @@ test
                 totalScore += readingScore;
                 details.push(`القراءة: ${readingScore}/9`);
                 
-                // قسم الكتابة (8 درجات)
                 let writingScore = 0;
                 const writingAnswer = this.finalTestAnswers.writing || '';
                 if (writingAnswer.trim().length > 0) {
@@ -3231,37 +3169,36 @@ test
                 
                 const percentage = Math.round((totalScore / maxScore) * 100);
                 
-                // عرض النتيجة
                 const resultHTML = `
-                    <div style="text-align: center; padding: 1.5rem;">
+                    <div style="text-align: center; padding: 1.2rem;">
                         <div style="background: ${percentage >= 60 ? 'linear-gradient(135deg, var(--secondary) 0%, #05c490 100%)' : 'linear-gradient(135deg, var(--error) 0%, #d43f8d 100%)'}; 
-                            width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                            <i class="fas fa-${percentage >= 60 ? 'trophy' : 'graduation-cap'}" style="font-size: 3rem; color: white;"></i>
+                            width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
+                            <i class="fas fa-${percentage >= 60 ? 'trophy' : 'graduation-cap'}" style="font-size: 2.2rem; color: white;"></i>
                         </div>
                         
-                        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">نتيجة الاختبار النهائي</h3>
+                        <h3 style="color: var(--text-primary); margin-bottom: 0.8rem; font-size: 1.1rem;">نتيجة الاختبار النهائي</h3>
                         
-                        <div style="background: white; border-radius: 12px; padding: 1.5rem; max-width: 500px; margin: 0 auto 1.5rem; box-shadow: var(--shadow);">
-                            <div style="font-size: 2.8rem; font-weight: 800; color: ${percentage >= 60 ? 'var(--secondary)' : 'var(--error)'}; margin-bottom: 1rem;">
+                        <div style="background: white; border-radius: 12px; padding: 1.2rem; max-width: 500px; margin: 0 auto 1.2rem; box-shadow: var(--shadow);">
+                            <div style="font-size: 2.2rem; font-weight: 800; color: ${percentage >= 60 ? 'var(--secondary)' : 'var(--error)'}; margin-bottom: 0.8rem;">
                                 ${totalScore}/${maxScore}
                             </div>
-                            <div style="font-size: 1.3rem; color: var(--text-primary); margin-bottom: 1rem;">
+                            <div style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.8rem;">
                                 ${percentage}%
                             </div>
-                            <div style="color: var(--text-secondary); margin-bottom: 1.2rem;">
+                            <div style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
                                 ${percentage >= 60 ? '✅ ناجح - أحسنت!' : '⏳ تحتاج إلى مزيد من الممارسة'}
                             </div>
                             
-                            <div style="text-align: right; margin-top: 1.5rem; background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                                <div style="margin-bottom: 0.5rem; font-weight: 600;">تفاصيل النتيجة:</div>
-                                ${details.map(detail => `<div style="margin-bottom: 0.3rem;">${detail}</div>`).join('')}
-                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-weight: 600;">
+                            <div style="text-align: right; margin-top: 1.2rem; background: #f8f9fa; padding: 0.8rem; border-radius: 8px; font-size: 0.9rem;">
+                                <div style="margin-bottom: 0.4rem; font-weight: 600;">تفاصيل النتيجة:</div>
+                                ${details.map(detail => `<div style="margin-bottom: 0.2rem;">${detail}</div>`).join('')}
+                                <div style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border); font-weight: 600;">
                                     المجموع النهائي: ${totalScore}/40
                                 </div>
                             </div>
                         </div>
                         
-                        <button class="btn btn-primary" onclick="app.closeFinalTestModal()" style="padding: 0.9rem 1.8rem; font-size: 1rem;">
+                        <button class="btn btn-primary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">
                             <i class="fas fa-check-circle"></i>
                             حسناً
                         </button>
@@ -3274,107 +3211,107 @@ test
             showTestPreview() {
                 const container = document.getElementById('finalTestContent');
                 container.innerHTML = `
-                    <div style="text-align: center; padding: 1.5rem;">
-                        <div style="background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                            <i class="fas fa-graduation-cap" style="font-size: 2.5rem; color: white;"></i>
+                    <div style="text-align: center; padding: 1.2rem;">
+                        <div style="background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
+                            <i class="fas fa-graduation-cap" style="font-size: 2rem; color: white;"></i>
                         </div>
                         
-                        <h3 style="color: var(--text-primary); margin-bottom: 1.2rem;">معاينة الاختبار النهائي</h3>
+                        <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.1rem;">معاينة الاختبار النهائي</h3>
                         
-                        <div style="max-width: 800px; margin: 0 auto 2rem; text-align: right;">
-                            <h4 style="color: var(--primary); margin-bottom: 1rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">هيكل الاختبار:</h4>
+                        <div style="max-width: 800px; margin: 0 auto 1.5rem; text-align: right; font-size: 0.9rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1rem;">هيكل الاختبار:</h4>
                             
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 1.5rem;">
-                                <div style="background: white; padding: 1.2rem; border-radius: 12px; border: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1rem;">
-                                        <div style="width: 36px; height: 36px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.2rem;">
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                                             <i class="fas fa-language"></i>
                                         </div>
                                         <div style="text-align: right;">
-                                            <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">9</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">القواعد</div>
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">9</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">القواعد</div>
                                         </div>
                                     </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.85rem;">اختر الإجابة الصحيحة</div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">اختر الإجابة الصحيحة</div>
                                 </div>
                                 
-                                <div style="background: white; padding: 1.2rem; border-radius: 12px; border: 2px solid var(--warning); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1rem;">
-                                        <div style="width: 36px; height: 36px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--warning); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                                             <i class="fas fa-spell-check"></i>
                                         </div>
                                         <div style="text-align: right;">
-                                            <div style="font-size: 1.5rem; font-weight: 800; color: var(--warning);">5</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">الإملاء</div>
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--warning);">5</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">الإملاء</div>
                                         </div>
                                     </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.85rem;">اختر الحرف الصحيح</div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">اختر الحرف الصحيح</div>
                                 </div>
                                 
-                                <div style="background: white; padding: 1.2rem; border-radius: 12px; border: 2px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1rem;">
-                                        <div style="width: 36px; height: 36px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                                             <i class="fas fa-book"></i>
                                         </div>
                                         <div style="text-align: right;">
-                                            <div style="font-size: 1.5rem; font-weight: 800; color: var(--secondary);">9</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">المفردات</div>
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">9</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">المفردات</div>
                                         </div>
                                     </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.85rem;">ربط الكلمة مع الصورة</div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">ربط الكلمة مع الصورة</div>
                                 </div>
                                 
-                                <div style="background: white; padding: 1.2rem; border-radius: 12px; border: 2px solid var(--info); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1rem;">
-                                        <div style="width: 36px; height: 36px; background: var(--info); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--info); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--info); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                                             <i class="fas fa-book-reader"></i>
                                         </div>
                                         <div style="text-align: right;">
-                                            <div style="font-size: 1.5rem; font-weight: 800; color: var(--info);">9</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">القراءة</div>
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--info);">9</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">القراءة</div>
                                         </div>
                                     </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.85rem;">صح أم خطأ</div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">صح أم خطأ</div>
                                 </div>
                                 
-                                <div style="background: white; padding: 1.2rem; border-radius: 12px; border: 2px solid var(--error); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1rem;">
-                                        <div style="width: 36px; height: 36px; background: var(--error); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--error); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--error); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                                             <i class="fas fa-edit"></i>
                                         </div>
                                         <div style="text-align: right;">
-                                            <div style="font-size: 1.5rem; font-weight: 800; color: var(--error);">8</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">الكتابة</div>
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--error);">8</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">الكتابة</div>
                                         </div>
                                     </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.85rem;">كتابة فقرة موجزة</div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">كتابة فقرة موجزة</div>
                                 </div>
                             </div>
                             
-                            <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); border-radius: 12px; color: white;">
-                                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem;">
+                            <div style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); border-radius: 12px; color: white;">
+                                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.2rem;">
                                     <div style="text-align: center;">
-                                        <div style="font-size: 2rem; font-weight: 800;">40</div>
-                                        <div style="font-size: 0.9rem;">سؤال شامل</div>
+                                        <div style="font-size: 1.8rem; font-weight: 800;">40</div>
+                                        <div style="font-size: 0.8rem;">سؤال شامل</div>
                                     </div>
                                     <div style="text-align: center;">
-                                        <div style="font-size: 2rem; font-weight: 800;">60</div>
-                                        <div style="font-size: 0.9rem;">دقيقة (الوقت)</div>
+                                        <div style="font-size: 1.8rem; font-weight: 800;">60</div>
+                                        <div style="font-size: 0.8rem;">دقيقة (الوقت)</div>
                                     </div>
                                     <div style="text-align: center;">
-                                        <div style="font-size: 2rem; font-weight: 800;">100</div>
-                                        <div style="font-size: 0.9rem;">درجة كاملة</div>
+                                        <div style="font-size: 1.8rem; font-weight: 800;">100</div>
+                                        <div style="font-size: 0.8rem;">درجة كاملة</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div style="margin-top: 2rem;">
-                            <button class="btn btn-primary" onclick="app.startFinalTest()" style="padding: 0.9rem 2rem; font-size: 1rem; margin: 0 0.5rem 0.5rem;">
+                        <div style="margin-top: 1.5rem;">
+                            <button class="btn btn-primary" onclick="app.startFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin: 0 0.4rem 0.4rem;">
                                 <i class="fas fa-play-circle"></i>
                                 بدء الاختبار الآن
                             </button>
-                            <button class="btn btn-secondary" onclick="app.closeFinalTestModal()" style="padding: 0.9rem 1.5rem; font-size: 1rem;">
+                            <button class="btn btn-secondary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.2rem; font-size: 0.95rem;">
                                 <i class="fas fa-times-circle"></i>
                                 إغلاق
                             </button>
@@ -3444,7 +3381,6 @@ test
             }
         }
 
-        // Initialize the app
         const app = new SuperGoalApp();
     </script>
 </body>
