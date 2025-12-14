@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -703,191 +703,218 @@
             flex-shrink: 0;
         }
 
-        /* Vocabulary */
-        .vocabulary-section {
-            margin-top: 1.2rem;
-        }
-
-        .matching-instruction {
-            background: #f0f7ff;
-            padding: 0.8rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-right: 4px solid var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .matching-container {
+        /* Vocabulary - التصميم الجديد من الملف السابق */
+        .vocabulary-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.2rem;
-            margin-top: 0.8rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .matching-column {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .matching-items {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .matching-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            padding: 0.8rem;
-            background: white;
-            border: 2px solid var(--border);
-            border-radius: 8px;
+        .vocab-item {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 170px;
         }
 
-        .matching-item.correct {
-            border-color: var(--secondary);
+        .vocab-item.correct {
+            border-color: #06d6a0;
             background: rgba(6, 214, 160, 0.05);
         }
 
-        .matching-item.incorrect {
-            border-color: var(--error);
+        .vocab-item.incorrect {
+            border-color: #ef476f;
             background: rgba(239, 71, 111, 0.05);
         }
 
-        .matching-number {
-            width: 30px;
-            height: 30px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-            font-size: 0.9rem;
-        }
-
-        .matching-word {
-            flex: 1;
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-        }
-
-        .matching-answer {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .image-container {
+            margin-bottom: 10px;
             width: 100%;
         }
 
-        .matching-select {
-            width: 100%;
-            padding: 0.5rem;
-            border: 2px solid var(--border);
-            border-radius: 6px;
-            font-family: 'Almarai', sans-serif;
-            font-size: 0.9rem;
-            background: white;
-            cursor: pointer;
-            min-height: 40px;
-        }
-
-        .matching-select:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        .answer-feedback {
-            width: 26px;
-            height: 26px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .answer-feedback .correct {
-            color: var(--secondary);
-            font-size: 1rem;
-        }
-
-        .answer-feedback .incorrect {
-            color: var(--error);
-            font-size: 1rem;
-        }
-
-        .images-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.6rem;
-        }
-
-        .image-item {
-            background: white;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            padding: 0.6rem;
+        .image-card {
+            border: 2px solid #2ec4b6;
+            border-radius: 10px;
+            padding: 8px;
+            background: #ecfffb;
             text-align: center;
-            transition: transform 0.3s ease;
+            width: 120px;
+            margin: 0 auto;
+            position: relative;
         }
 
         .image-letter {
-            width: 26px;
-            height: 26px;
-            background: var(--primary);
-            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #2ec4b6;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 6px;
+            font-size: 0.9rem;
+        }
+
+        .image-card img {
+            width: 80px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .word-container {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .answer-container {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .vocab-select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #ccc;
+            font-family: 'Almarai', sans-serif;
+            font-size: 0.95rem;
+            background: white;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .vocab-select:focus {
+            border-color: #4361ee;
+            outline: none;
+        }
+
+        .vocab-select:disabled {
+            background: #f5f5f5;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .feedback-icon-vocab {
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            margin: 0 auto 0.4rem;
+            font-weight: bold;
             font-size: 0.9rem;
+            flex-shrink: 0;
         }
 
-        .matching-image {
-            width: 100%;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 0.4rem;
+        .correct-icon-vocab {
+            background: #06d6a0;
+            color: white;
         }
 
-        .image-label {
-            font-size: 0.8rem;
-            color: var(--text-primary);
-            font-weight: 600;
+        .incorrect-icon-vocab {
+            background: #ef476f;
+            color: white;
         }
 
-        .answer-key {
-            margin-top: 1.2rem;
-            padding: 0.8rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-right: 4px solid var(--secondary);
+        .correct-hint {
+            margin-top: 8px;
+            padding: 6px;
+            background: rgba(6, 214, 160, 0.1);
+            border-radius: 4px;
+            border-right: 2px solid #06d6a0;
             font-size: 0.85rem;
+            color: #06d6a0;
+            font-weight: 600;
+            text-align: center;
         }
 
-        .answer-key-item {
-            background: white;
-            padding: 0.2rem 0.5rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            display: inline-block;
-            margin: 0.2rem;
+        .vocab-stats-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
         }
 
-        .progress-stats {
-            margin-top: 1.2rem;
+        .vocab-stats {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .vocab-stat-item {
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .vocab-stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .vocab-stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .vocab-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .vocab-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Almarai', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .vocab-btn-check {
+            background: #4361ee;
+            color: white;
+        }
+
+        .vocab-btn-show {
+            background: #06d6a0;
+            color: white;
+        }
+
+        .vocab-btn-reset {
+            background: #ffd166;
+            color: #333;
+        }
+
+        .vocab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         /* True/False */
@@ -1075,6 +1102,87 @@
             }
         }
 
+        /* تعديلات للشاشات المتوسطة */
+        @media (max-width: 900px) {
+            .vocabulary-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .image-card {
+                width: 110px;
+            }
+            
+            .image-card img {
+                width: 70px;
+                height: 55px;
+            }
+        }
+
+        /* تعديلات للهواتف */
+        @media (max-width: 600px) {
+            .vocabulary-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .vocab-item {
+                min-height: 160px;
+                padding: 12px;
+            }
+            
+            .image-card {
+                width: 100px;
+            }
+            
+            .image-card img {
+                width: 65px;
+                height: 50px;
+            }
+            
+            .vocab-select {
+                padding: 8px;
+            }
+            
+            .vocab-stats {
+                gap: 15px;
+            }
+            
+            .vocab-stat-item {
+                min-width: 80px;
+            }
+            
+            .vocab-stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .vocab-btn {
+                min-width: 140px;
+                padding: 8px 15px;
+            }
+            
+            .vocab-buttons {
+                gap: 8px;
+            }
+        }
+
+        /* تعديلات للهواتف الصغيرة جداً */
+        @media (max-width: 400px) {
+            .image-card {
+                width: 90px;
+            }
+            
+            .image-card img {
+                width: 60px;
+                height: 45px;
+            }
+            
+            .vocab-btn {
+                min-width: 120px;
+                font-size: 0.9rem;
+            }
+        }
+
         /* Tablet Styles */
         @media (min-width: 768px) {
             body {
@@ -1133,35 +1241,12 @@
                 max-width: 90%;
             }
             
-            .matching-container {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .matching-item {
-                flex-direction: row;
-                align-items: center;
-            }
-            
-            .images-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .matching-image {
-                height: 100px;
-            }
-            
-            .test-stats {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
             .tf-options {
                 flex-direction: row;
             }
             
-            .progress-stats {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
+            .test-stats {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -1208,10 +1293,6 @@
             .btn {
                 min-height: 42px;
                 padding: 0.7rem 0.8rem;
-            }
-            
-            .images-grid {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -1397,7 +1478,7 @@
     </div>
 
     <script>
-        // البيانات تبقى كما هي بدون تغيير
+        // البيانات
         const unitsData = [
             {
                 id: 1,
@@ -1969,51 +2050,15 @@
                 }
             ],
             vocabulary: [
-                {
-                    id: 1,
-                    word: "shrimp",
-                    correctMatch: "I"
-                },
-                {
-                    id: 2,
-                    word: "carrot",
-                    correctMatch: "G"
-                },
-                {
-                    id: 3,
-                    word: "bread",
-                    correctMatch: "H"
-                },
-                {
-                    id: 4,
-                    word: "mango",
-                    correctMatch: "F"
-                },
-                {
-                    id: 5,
-                    word: "cheese",
-                    correctMatch: "E"
-                },
-                {
-                    id: 6,
-                    word: "lamb",
-                    correctMatch: "D"
-                },
-                {
-                    id: 7,
-                    word: "olive oil",
-                    correctMatch: "C"
-                },
-                {
-                    id: 8,
-                    word: "cereal",
-                    correctMatch: "B"
-                },
-                {
-                    id: 9,
-                    word: "avocado",
-                    correctMatch: "A"
-                }
+                { id: 1, word: "avocado", correctMatch: "A" },
+                { id: 2, word: "cereal", correctMatch: "B" },
+                { id: 3, word: "olive oil", correctMatch: "C" },
+                { id: 4, word: "lamb", correctMatch: "D" },
+                { id: 5, word: "cheese", correctMatch: "E" },
+                { id: 6, word: "mango", correctMatch: "F" },
+                { id: 7, word: "bread", correctMatch: "G" },
+                { id: 8, word: "carrot", correctMatch: "H" },
+                { id: 9, word: "shrimp", correctMatch: "I" }
             ],
             reading: [
                 {
@@ -2080,15 +2125,15 @@
         };
 
         const vocabularyImages = [
-            { code: "A", image: "https://i.ibb.co/bgBqr2vp/IMG-2038.jpg", label: "A. avocado" },
-            { code: "B", image: "https://i.ibb.co/C3SrJVVT/IMG-2037.jpg", label: "B. cereal" },
-            { code: "C", image: "https://i.ibb.co/8L6n4sm4/IMG-2036.jpg", label: "C. olive oil" },
-            { code: "D", image: "https://i.ibb.co/cSbBBhmg/IMG-2035.jpg", label: "D. lamb" },
-            { code: "E", image: "https://i.ibb.co/v448HKNw/IMG-2034.jpg", label: "E. cheese" },
-            { code: "F", image: "https://i.ibb.co/vCYy204h/IMG-2033.jpg", label: "F. mango" },
-            { code: "G", image: "https://i.ibb.co/3YNMrbDN/IMG-2031.webp", label: "G. carrot" },
-            { code: "H", image: "https://i.ibb.co/20LtFPLR/IMG-2032.jpg", label: "H. bread" },
-            { code: "I", image: "https://i.ibb.co/P0g70Ls/IMG-2030.jpg", label: "I. shrimp" }
+            { letter: "A", img: "https://i.ibb.co/bgBqr2vp/IMG-2038.jpg" },
+            { letter: "B", img: "https://i.ibb.co/C3SrJVVT/IMG-2037.jpg" },
+            { letter: "C", img: "https://i.ibb.co/8L6n4sm4/IMG-2036.jpg" },
+            { letter: "D", img: "https://i.ibb.co/cSbBBhmg/IMG-2035.jpg" },
+            { letter: "E", img: "https://i.ibb.co/v448HKNw/IMG-2034.jpg" },
+            { letter: "F", img: "https://i.ibb.co/vCYy204h/IMG-2033.jpg" },
+            { letter: "G", img: "https://i.ibb.co/3YNMrbDN/IMG-2031.webp" },
+            { letter: "H", img: "https://i.ibb.co/20LtFPLR/IMG-2032.jpg" },
+            { letter: "I", img: "https://i.ibb.co/P0g70Ls/IMG-2030.jpg" }
         ];
 
         const writingSamples = [
@@ -2612,7 +2657,7 @@
                 
                 container.appendChild(orthographySection);
                 
-                // Vocabulary Section
+                // Vocabulary Section - التصميم الجديد من الملف السابق
                 const vocabularySection = this.createTestSection(
                     "المفردات (Vocabulary)",
                     "fas fa-book",
@@ -2623,103 +2668,60 @@
                 const vocabularyContent = document.createElement('div');
                 vocabularyContent.className = 'vocabulary-section';
                 vocabularyContent.innerHTML = `
-                    <div class="matching-instruction">
-                        <p style="color: var(--primary); font-weight: 600;">
-                            <i class="fas fa-info-circle"></i>
-                            مهمتك: اربط كل كلمة مع الصورة المناسبة لها من خلال اختيار الحرف الصحيح (A-I)
-                        </p>
-                    </div>
-                    
-                    <div class="matching-container">
-                        <div class="matching-column">
-                            <h4 style="color: var(--primary); margin-bottom: 1rem; text-align: center; font-size: 1rem;">الكلمات</h4>
-                            <div class="matching-items" id="vocabularyWords">
-                                ${finalTestData.vocabulary.map((item, index) => `
-                                    <div class="matching-item" data-id="${item.id}" id="vocab-item-${item.id}">
-                                        <div style="display: flex; align-items: center; gap: 0.6rem;">
-                                            <div class="matching-number">${index + 1}</div>
-                                            <div class="matching-word">${item.word}</div>
-                                        </div>
-                                        <div class="matching-answer">
-                                            <select class="matching-select" 
-                                                    onchange="app.selectVocabularyAnswer(${item.id}, this.value)"
-                                                    data-question="${item.id}">
-                                                <option value="">اختر الحرف</option>
-                                                ${['A','B','C','D','E','F','G','H','I'].map(letter => 
-                                                    `<option value="${letter}" ${this.finalTestAnswers.vocabulary[item.id] === letter ? 'selected' : ''}>${letter}</option>`
-                                                ).join('')}
-                                            </select>
-                                            <div class="answer-feedback" id="feedback-${item.id}">
-                                                ${this.finalTestAnswers.vocabulary[item.id] ? 
-                                                    (this.finalTestAnswers.vocabulary[item.id] === item.correctMatch ? 
-                                                        '<i class="fas fa-check correct"></i>' : 
-                                                        '<i class="fas fa-times incorrect"></i>') : 
-                                                    ''
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        
-                        <div class="matching-column">
-                            <h4 style="color: var(--primary); margin-bottom: 1rem; text-align: center; font-size: 1rem;">الصور</h4>
-                            <div class="images-grid">
-                                ${vocabularyImages.map(item => `
-                                    <div class="image-item">
-                                        <div class="image-letter">${item.code}</div>
-                                        <img src="${item.image}" 
-                                             alt="${item.label}" 
-                                             class="matching-image"
-                                             onerror="this.src='https://via.placeholder.com/120x120?text=Image+${item.code}'">
-                                        <div class="image-label">${item.label}</div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            
-                            <div class="answer-key">
-                                <h5 style="color: var(--text-primary); margin-bottom: 0.4rem; font-size: 0.9rem;">
-                                    <i class="fas fa-key"></i> مفتاح الإجابات:
-                                </h5>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
-                                    ${finalTestData.vocabulary.map(item => 
-                                        `<span class="answer-key-item" data-correct="${item.correctMatch}">
-                                            ${item.word} → ${item.correctMatch}
-                                        </span>`
-                                    ).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="progress-stats">
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                            <div style="text-align: center;">
-                                <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary);" id="vocabAnsweredCount">
-                                    ${Object.keys(this.finalTestAnswers.vocabulary).filter(k => this.finalTestAnswers.vocabulary[k]).length}/9
-                                </div>
-                                <div style="font-size: 0.8rem; color: var(--text-secondary);">تمت الإجابة</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 1.2rem; font-weight: 700; color: var(--secondary);" id="vocabCorrectCount">
-                                    ${finalTestData.vocabulary.filter(item => 
-                                        this.finalTestAnswers.vocabulary[item.id] === item.correctMatch
-                                    ).length}
-                                </div>
-                                <div style="font-size: 0.8rem; color: var(--text-secondary);">إجابات صحيحة</div>
-                            </div>
-                        </div>
-                        
-                        <button class="btn btn-secondary" onclick="app.showVocabularyAnswers()" style="margin-top: 0.5rem;">
-                            <i class="fas fa-eye"></i>
-                            عرض الإجابات الصحيحة
-                        </button>
+                    <div class="writing-instruction">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>التعليمات:</strong> اختر الكلمة المناسبة لكل صورة من القائمة المنسدلة. سيتم تصحيح إجابتك تلقائياً.
                     </div>
                 `;
                 
                 vocabularySection.appendChild(vocabularyContent);
+                
+                // إنشاء وعرض عناصر المفردات
+                const gridContainer = document.createElement('div');
+                gridContainer.id = 'vocabularyGridFinalTest';
+                gridContainer.className = 'vocabulary-grid';
+                vocabularySection.appendChild(gridContainer);
+                
+                // إنشاء وعرض إحصائيات وأزرار التحكم
+                const controlsContainer = document.createElement('div');
+                controlsContainer.className = 'vocab-stats-container';
+                controlsContainer.innerHTML = `
+                    <div class="vocab-stats">
+                        <div class="vocab-stat-item">
+                            <div class="vocab-stat-number" id="vocabAnsweredCount">0</div>
+                            <div class="vocab-stat-label">تمت الإجابة</div>
+                        </div>
+                        <div class="vocab-stat-item">
+                            <div class="vocab-stat-number" id="vocabCorrectCount">0</div>
+                            <div class="vocab-stat-label">إجابات صحيحة</div>
+                        </div>
+                        <div class="vocab-stat-item">
+                            <div class="vocab-stat-number" id="vocabIncorrectCount">0</div>
+                            <div class="vocab-stat-label">إجابات خاطئة</div>
+                        </div>
+                    </div>
+                    
+                    <div class="vocab-buttons">
+                        <button class="vocab-btn vocab-btn-check" onclick="app.checkAllVocabularyAnswers()">
+                            <i class="fas fa-check-circle"></i>
+                            تصحيح الكل
+                        </button>
+                        <button class="vocab-btn vocab-btn-show" onclick="app.showAllCorrectVocabularyAnswers()">
+                            <i class="fas fa-eye"></i>
+                            عرض الإجابات الصحيحة
+                        </button>
+                        <button class="vocab-btn vocab-btn-reset" onclick="app.resetVocabularyAnswers()">
+                            <i class="fas fa-redo"></i>
+                            إعادة المحاولة
+                        </button>
+                    </div>
+                `;
+                vocabularySection.appendChild(controlsContainer);
+                
                 container.appendChild(vocabularySection);
+                
+                // توليد عناصر المفردات
+                this.generateVocabularyItems();
                 
                 // Reading Section
                 const readingSection = this.createTestSection(
@@ -2931,56 +2933,194 @@
                 this.updateFinalTestProgress();
             }
 
-            selectVocabularyAnswer(questionId, value) {
-                const question = finalTestData.vocabulary.find(q => q.id === questionId);
-                const isCorrect = value === question.correctMatch;
+            // توليد عناصر المفردات للاختبار النهائي
+            generateVocabularyItems() {
+                const container = document.getElementById('vocabularyGridFinalTest');
+                if (!container) return;
                 
-                this.finalTestAnswers.vocabulary[questionId] = value;
-                this.saveProgress();
+                container.innerHTML = '';
                 
-                const matchingItem = document.getElementById(`vocab-item-${questionId}`);
-                const feedbackDiv = document.getElementById(`feedback-${questionId}`);
+                vocabularyImages.forEach((imgItem, index) => {
+                    const wordItem = finalTestData.vocabulary[index];
+                    if (!wordItem) return;
+                    
+                    const userAnswer = this.finalTestAnswers.vocabulary[wordItem.id];
+                    const isCorrect = userAnswer === wordItem.correctMatch;
+                    const hasAnswer = userAnswer !== undefined;
+                    
+                    const item = document.createElement('div');
+                    item.className = `vocab-item ${hasAnswer ? (isCorrect ? 'correct' : 'incorrect') : ''}`;
+                    item.id = `vocab-item-final-${wordItem.id}`;
+                    
+                    const reversedOptions = finalTestData.vocabulary.slice().reverse();
+                    
+                    item.innerHTML = `
+                        <div class="image-container">
+                            <div class="image-card">
+                                <div class="image-letter">${imgItem.letter}</div>
+                                <img src="${imgItem.img}" alt="صورة ${imgItem.letter}" 
+                                     onerror="this.src='https://via.placeholder.com/80x60?text=${imgItem.letter}'">
+                            </div>
+                        </div>
+                        
+                        <div class="word-container">
+                            <div class="answer-container">
+                                <select class="vocab-select" onchange="app.selectVocabularyAnswerFinal(${wordItem.id}, this.value)" 
+                                        id="vocab-select-final-${wordItem.id}"
+                                        ${hasAnswer && !isCorrect ? 'disabled' : ''}>
+                                    <option value="">اختر الكلمة المناسبة</option>
+                                    ${reversedOptions.map((word, idx) => 
+                                        `<option value="${word.correctMatch}" ${userAnswer === word.correctMatch ? 'selected' : ''}>
+                                            ${idx + 1}. ${word.word}
+                                        </option>`
+                                    ).join('')}
+                                </select>
+                                
+                                ${hasAnswer ? `
+                                    <div class="feedback-icon-vocab ${isCorrect ? 'correct-icon-vocab' : 'incorrect-icon-vocab'}">
+                                        ${isCorrect ? '✓' : '✗'}
+                                    </div>
+                                ` : ''}
+                            </div>
+                            
+                            ${hasAnswer && !isCorrect ? `
+                                <div class="correct-hint">
+                                    <i class="fas fa-lightbulb"></i>
+                                    الإجابة الصحيحة: ${wordItem.word}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                    
+                    container.appendChild(item);
+                });
                 
-                if (matchingItem) {
-                    matchingItem.classList.remove('correct', 'incorrect');
-                    if (isCorrect) {
-                        matchingItem.classList.add('correct');
-                    } else {
-                        matchingItem.classList.add('incorrect');
+                this.updateVocabularyStats();
+            }
+
+            // اختيار إجابة للمفردات في الاختبار النهائي
+            selectVocabularyAnswerFinal(id, value) {
+                const wordItem = finalTestData.vocabulary.find(item => item.id === id);
+                if (!wordItem) return;
+                
+                this.finalTestAnswers.vocabulary[id] = value;
+                const isCorrect = value === wordItem.correctMatch;
+                
+                const item = document.getElementById(`vocab-item-final-${id}`);
+                const select = document.getElementById(`vocab-select-final-${id}`);
+                
+                // تحديث العنصر
+                item.className = `vocab-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                
+                // تحديث أيقونة التغذية الراجعة
+                const feedbackContainer = item.querySelector('.answer-container');
+                const existingFeedback = feedbackContainer.querySelector('.feedback-icon-vocab');
+                if (existingFeedback) {
+                    existingFeedback.remove();
+                }
+                
+                const feedbackIcon = document.createElement('div');
+                feedbackIcon.className = `feedback-icon-vocab ${isCorrect ? 'correct-icon-vocab' : 'incorrect-icon-vocab'}`;
+                feedbackIcon.innerHTML = isCorrect ? '✓' : '✗';
+                feedbackContainer.appendChild(feedbackIcon);
+                
+                // إضافة تلميح الإجابة الصحيحة إذا كانت خاطئة
+                const existingHint = item.querySelector('.correct-hint');
+                if (!isCorrect) {
+                    if (!existingHint) {
+                        const hint = document.createElement('div');
+                        hint.className = 'correct-hint';
+                        hint.innerHTML = `<i class="fas fa-lightbulb"></i> الإجابة الصحيحة: ${wordItem.word}`;
+                        item.querySelector('.word-container').appendChild(hint);
                     }
+                    if (select) select.disabled = true;
+                } else if (existingHint) {
+                    existingHint.remove();
                 }
                 
-                if (feedbackDiv) {
-                    feedbackDiv.innerHTML = isCorrect ? 
-                        '<i class="fas fa-check correct"></i>' : 
-                        '<i class="fas fa-times incorrect"></i>';
-                }
-                
+                this.saveProgress();
                 this.updateVocabularyStats();
                 this.updateFinalTestProgress();
             }
 
+            // تحديث إحصائيات المفردات للاختبار النهائي
             updateVocabularyStats() {
                 const answered = Object.keys(this.finalTestAnswers.vocabulary)
                     .filter(k => this.finalTestAnswers.vocabulary[k]).length;
                 const correct = finalTestData.vocabulary.filter(item => 
                     this.finalTestAnswers.vocabulary[item.id] === item.correctMatch
                 ).length;
+                const incorrect = finalTestData.vocabulary.filter(item => 
+                    this.finalTestAnswers.vocabulary[item.id] && 
+                    this.finalTestAnswers.vocabulary[item.id] !== item.correctMatch
+                ).length;
                 
-                document.getElementById('vocabAnsweredCount').textContent = `${answered}/9`;
+                document.getElementById('vocabAnsweredCount').textContent = answered;
                 document.getElementById('vocabCorrectCount').textContent = correct;
+                document.getElementById('vocabIncorrectCount').textContent = incorrect;
             }
 
-            showVocabularyAnswers() {
+            // تصحيح جميع إجابات المفردات
+            checkAllVocabularyAnswers() {
                 finalTestData.vocabulary.forEach(item => {
-                    const select = document.querySelector(`select[data-question="${item.id}"]`);
-                    if (select) {
-                        select.value = item.correctMatch;
-                        this.selectVocabularyAnswer(item.id, item.correctMatch);
+                    const select = document.getElementById(`vocab-select-final-${item.id}`);
+                    if (select && select.value) {
+                        this.selectVocabularyAnswerFinal(item.id, select.value);
                     }
                 });
-                
-                alert('تم عرض الإجابات الصحيحة! يمكنك تعديل إجاباتك إذا أردت.');
+            }
+
+            // عرض جميع الإجابات الصحيحة للمفردات
+            showAllCorrectVocabularyAnswers() {
+                if (confirm('هل تريد عرض جميع الإجابات الصحيحة؟ سيتم تعطيل الاختيار.')) {
+                    finalTestData.vocabulary.forEach(item => {
+                        const select = document.getElementById(`vocab-select-final-${item.id}`);
+                        const itemElement = document.getElementById(`vocab-item-final-${item.id}`);
+                        
+                        if (select && itemElement) {
+                            select.value = item.correctMatch;
+                            this.finalTestAnswers.vocabulary[item.id] = item.correctMatch;
+                            
+                            itemElement.className = 'vocab-item correct';
+                            select.disabled = true;
+                            
+                            // تحديث أيقونة التغذية الراجعة
+                            const feedbackContainer = itemElement.querySelector('.answer-container');
+                            const existingFeedback = feedbackContainer.querySelector('.feedback-icon-vocab');
+                            if (existingFeedback) {
+                                existingFeedback.remove();
+                            }
+                            
+                            const feedbackIcon = document.createElement('div');
+                            feedbackIcon.className = 'feedback-icon-vocab correct-icon-vocab';
+                            feedbackIcon.innerHTML = '✓';
+                            feedbackContainer.appendChild(feedbackIcon);
+                            
+                            // إزالة أي تلميح سابق
+                            const existingHint = itemElement.querySelector('.correct-hint');
+                            if (existingHint) {
+                                existingHint.remove();
+                            }
+                        }
+                    });
+                    
+                    this.saveProgress();
+                    this.updateVocabularyStats();
+                    this.updateFinalTestProgress();
+                }
+            }
+
+            // إعادة تعيين إجابات المفردات
+            resetVocabularyAnswers() {
+                if (confirm('هل تريد إعادة تعيين جميع إجابات المفردات؟')) {
+                    finalTestData.vocabulary.forEach(item => {
+                        delete this.finalTestAnswers.vocabulary[item.id];
+                    });
+                    
+                    this.generateVocabularyItems();
+                    this.saveProgress();
+                    this.updateFinalTestProgress();
+                }
             }
 
             selectTrueFalseAnswer(questionId, value) {
@@ -3258,7 +3398,7 @@
                                             <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">المفردات</div>
                                         </div>
                                     </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">ربط الكلمة مع الصورة</div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">اختر الكلمة المناسبة للصورة</div>
                                 </div>
                                 
                                 <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--info); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
