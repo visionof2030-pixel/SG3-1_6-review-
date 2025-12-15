@@ -1373,6 +1373,103 @@
             user-select: none;
             -webkit-user-select: none;
         }
+        
+        .result-display {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: var(--radius);
+            margin: 1rem 0;
+        }
+        
+        .result-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .result-score {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .result-total {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .result-percentage {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .result-details {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .result-message {
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .auto-result-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+        
+        .auto-result-container.active {
+            display: flex;
+        }
+        
+        .auto-result-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            animation: popIn 0.5s ease;
+        }
+        
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1526,13 +1623,54 @@
                 <!-- Test content will be filled here -->
             </div>
             <div style="padding: 1rem; border-top: 1px solid var(--border); text-align: center;">
-                <button class="btn btn-success" onclick="app.submitFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin-bottom: 0.5rem;">
-                    <i class="fas fa-paper-plane"></i>
-                    Submit Test
-                </button>
+                <div id="autoResultContainer"></div>
                 <div style="color: var(--text-secondary); font-size: 0.85rem;">
                     <span id="testProgressText">0/40 questions answered</span>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto Result Display Modal -->
+    <div class="auto-result-container" id="autoResultModal">
+        <div class="auto-result-content">
+            <div style="margin-bottom: 2rem;">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">
+                    النتيجة
+                </div>
+                <div style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                    Result
+                </div>
+            </div>
+            
+            <div class="result-circle" id="resultCircle">
+                <div style="text-align: center; color: white;">
+                    <div class="result-score" id="resultScore">0</div>
+                    <div class="result-total">/ 40</div>
+                </div>
+            </div>
+            
+            <div class="result-percentage" id="resultPercentage">0%</div>
+            
+            <div class="result-details" id="resultDetails">
+                <!-- Result details will be filled here -->
+            </div>
+            
+            <div class="result-message" id="resultMessage">
+                <!-- Result message will be filled here -->
+            </div>
+            
+            <div style="display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="app.closeAutoResult()" 
+                        style="padding: 0.9rem 1.8rem; font-size: 1rem;">
+                    <i class="fas fa-check-circle"></i>
+                    إغلاق
+                </button>
+                <button class="btn btn-secondary" onclick="app.retryTest()" 
+                        style="padding: 0.9rem 1.8rem; font-size: 1rem;">
+                    <i class="fas fa-redo"></i>
+                    حاول مرة أخرى
+                </button>
             </div>
         </div>
     </div>
@@ -2441,6 +2579,9 @@
                 this.currentUnitOrder = {};
                 this.currentFinalTestOrder = {};
                 this.vocabularyOptionsCache = {};
+                this.isTestSubmitted = false;
+                this.allQuestionsAnswered = false;
+                this.autoSubmitTimeout = null;
                 
                 this.init();
             }
@@ -2588,7 +2729,6 @@
                 return shuffledQuestions;
             }
 
-            // دالة جديدة لإنشاء قائمة مفردات عشوائية لكل عنصر
             getRandomVocabularyOptionsForItem(currentItemId) {
                 if (this.vocabularyOptionsCache[currentItemId]) {
                     return this.vocabularyOptionsCache[currentItemId];
@@ -2725,6 +2865,242 @@
                 const testProgressText = document.getElementById('testProgressText');
                 if (testProgressText) {
                     testProgressText.textContent = `${totalAnswered}/${totalQuestions} questions answered`;
+                }
+                
+                // التحقق من اكتمال جميع الأسئلة
+                if (totalAnswered === totalQuestions && !this.isTestSubmitted && !this.allQuestionsAnswered) {
+                    this.allQuestionsAnswered = true;
+                    this.autoSubmitTest();
+                }
+                
+                return { totalAnswered, totalQuestions };
+            }
+
+            autoSubmitTest() {
+                // إيقاف المؤقت
+                this.stopTestTimer();
+                
+                // عرض رسالة تلقائية
+                const autoResultContainer = document.getElementById('autoResultContainer');
+                if (autoResultContainer) {
+                    autoResultContainer.innerHTML = `
+                        <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
+                             color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; text-align: center;">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
+                                <h4 style="margin: 0; font-size: 1.1rem;">تم الانتهاء من جميع الأسئلة!</h4>
+                            </div>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">سيتم عرض النتيجة تلقائياً خلال 3 ثوانٍ...</p>
+                        </div>
+                    `;
+                }
+                
+                // تأخير 3 ثوانٍ ثم عرض النتيجة
+                setTimeout(() => {
+                    this.calculateAndShowResult();
+                }, 3000);
+            }
+
+            calculateAndShowResult() {
+                this.isTestSubmitted = true;
+                
+                let totalScore = 0;
+                let maxScore = 40;
+                let details = [];
+                
+                // Grammar - 9 أسئلة
+                let grammarScore = 0;
+                const grammarQuestions = this.currentFinalTestOrder.grammar || {};
+                Object.keys(this.finalTestAnswers.grammar).forEach(questionId => {
+                    const userAnswer = this.finalTestAnswers.grammar[questionId];
+                    const questionInfo = grammarQuestions[questionId];
+                    if (questionInfo && userAnswer === questionInfo.correctAnswer) {
+                        grammarScore++;
+                    }
+                });
+                totalScore += grammarScore;
+                details.push(`Grammar: ${grammarScore}/9`);
+                
+                // Orthography - 5 أسئلة
+                let orthographyScore = 0;
+                const orthographyQuestions = this.currentFinalTestOrder.orthography || {};
+                Object.keys(this.finalTestAnswers.orthography).forEach(questionId => {
+                    const userAnswer = this.finalTestAnswers.orthography[questionId];
+                    const questionInfo = orthographyQuestions[questionId];
+                    if (questionInfo && userAnswer === questionInfo.correctAnswer) {
+                        orthographyScore++;
+                    }
+                });
+                totalScore += orthographyScore;
+                details.push(`Orthography: ${orthographyScore}/5`);
+                
+                // Vocabulary - 9 أسئلة
+                let vocabularyScore = 0;
+                finalTestData.vocabulary.forEach(item => {
+                    if (this.finalTestAnswers.vocabulary[item.id] === item.correctMatch) {
+                        vocabularyScore++;
+                    }
+                });
+                totalScore += vocabularyScore;
+                details.push(`Vocabulary: ${vocabularyScore}/9`);
+                
+                // Reading - 9 أسئلة
+                let readingScore = 0;
+                const readingQuestions = this.currentFinalTestOrder.reading || {};
+                
+                finalTestData.reading.forEach(readingItem => {
+                    const questionId = readingItem.id;
+                    const userAnswer = this.finalTestAnswers.reading[questionId];
+                    const questionInfo = readingQuestions[questionId];
+                    
+                    if (userAnswer !== undefined && questionInfo) {
+                        if (userAnswer === questionInfo.correctAnswer) {
+                            readingScore++;
+                        }
+                    }
+                });
+                totalScore += readingScore;
+                details.push(`Reading: ${readingScore}/9`);
+                
+                // Writing - 8 نقاط
+                let writingScore = 0;
+                const writingAnswer = this.finalTestAnswers.writing || '';
+                if (writingAnswer.trim().length > 0) {
+                    const usedWords = finalTestData.writing.words.filter(word => 
+                        writingAnswer.toLowerCase().includes(word.toLowerCase())
+                    ).length;
+                    
+                    const sentenceCount = (writingAnswer.match(/[.!?]/g) || []).length;
+                    
+                    if (usedWords >= 8 && sentenceCount >= 3 && sentenceCount <= 5) {
+                        writingScore = 8;
+                    } else if (usedWords >= 6 && sentenceCount >= 2) {
+                        writingScore = 6;
+                    } else if (usedWords >= 4 && sentenceCount >= 1) {
+                        writingScore = 4;
+                    } else if (writingAnswer.trim().length > 20) {
+                        writingScore = 2;
+                    }
+                }
+                totalScore += writingScore;
+                details.push(`Writing: ${writingScore}/8`);
+                
+                this.finalTestScore = totalScore;
+                this.saveProgress();
+                
+                // إخفاء محتوى الاختبار وعرض النتيجة
+                this.showResultInModal(totalScore, maxScore, details);
+            }
+
+            showResultInModal(totalScore, maxScore, details) {
+                const percentage = Math.round((totalScore / maxScore) * 100);
+                const isPass = percentage >= 60;
+                
+                // تحديث دائرة النتيجة
+                const resultCircle = document.getElementById('resultCircle');
+                const resultScore = document.getElementById('resultScore');
+                const resultPercentage = document.getElementById('resultPercentage');
+                const resultDetails = document.getElementById('resultDetails');
+                const resultMessage = document.getElementById('resultMessage');
+                
+                // تعيين ألوان الدائرة بناءً على النتيجة
+                const circleColor = isPass 
+                    ? 'linear-gradient(135deg, var(--secondary) 0%, #05c490 100%)'
+                    : 'linear-gradient(135deg, var(--error) 0%, #d43f8d 100%)';
+                
+                resultCircle.style.background = circleColor;
+                resultScore.textContent = totalScore;
+                resultPercentage.textContent = `${percentage}%`;
+                resultPercentage.style.color = isPass ? 'var(--secondary)' : 'var(--error)';
+                
+                // تعيين تفاصيل النتيجة
+                resultDetails.innerHTML = `
+                    <div style="margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--border);">
+                        <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem;">تفاصيل النتيجة</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Result Details</div>
+                    </div>
+                    ${details.map(detail => {
+                        const [section, score] = detail.split(': ');
+                        const [obtained, total] = score.split('/');
+                        const sectionColor = 
+                            section.includes('Grammar') ? 'var(--primary)' :
+                            section.includes('Orthography') ? 'var(--warning)' :
+                            section.includes('Vocabulary') ? 'var(--secondary)' :
+                            section.includes('Reading') ? 'var(--info)' :
+                            'var(--final-test-color)';
+                        
+                        return `
+                            <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #f0f0f0;">
+                                <span style="font-size: 0.95rem; color: var(--text-primary);">${section}</span>
+                                <span style="font-weight: 600; color: ${sectionColor};">${score}</span>
+                            </div>
+                        `;
+                    }).join('')}
+                    <div style="display: flex; justify-content: space-between; padding: 1rem 0 0; margin-top: 0.5rem; border-top: 2px solid var(--primary);">
+                        <span style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">المجموع الكلي</span>
+                        <span style="font-size: 1.1rem; font-weight: 800; color: var(--primary);">${totalScore}/40</span>
+                    </div>
+                `;
+                
+                // تعيين رسالة النتيجة
+                const messageColor = isPass 
+                    ? 'rgba(6, 214, 160, 0.1)' 
+                    : 'rgba(239, 71, 111, 0.1)';
+                const borderColor = isPass 
+                    ? 'var(--secondary)' 
+                    : 'var(--error)';
+                
+                resultMessage.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-${isPass ? 'trophy' : 'graduation-cap'}" 
+                           style="color: ${borderColor}; font-size: 1.2rem;"></i>
+                        <span style="font-weight: 700; color: ${borderColor};">
+                            ${isPass ? '✅ اجتاز الاختبار - أحسنت!' : '⏳ يحتاج إلى مزيد من التدريب'}
+                        </span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                        ${isPass ? 'لقد اجتزت الاختبار بنجاح. استمر في العمل الجيد!' : 'راجع المواد وحاول مرة أخرى لتحسين نتيجتك.'}
+                    </div>
+                `;
+                resultMessage.style.background = messageColor;
+                resultMessage.style.borderLeft = `4px solid ${borderColor}`;
+                
+                // إظهار نافذة النتيجة
+                document.getElementById('autoResultModal').classList.add('active');
+            }
+
+            closeAutoResult() {
+                document.getElementById('autoResultModal').classList.remove('active');
+                this.closeFinalTestModal();
+            }
+
+            retryTest() {
+                if (confirm('هل تريد إعادة الاختبار؟ سيتم مسح جميع إجاباتك الحالية.')) {
+                    // إعادة تعيين إجابات الاختبار النهائي
+                    this.finalTestAnswers = {
+                        grammar: {},
+                        orthography: {},
+                        vocabulary: {},
+                        reading: {},
+                        writing: ""
+                    };
+                    this.finalTestScore = 0;
+                    this.isTestSubmitted = false;
+                    this.allQuestionsAnswered = false;
+                    
+                    // إعادة تعيين الكاش
+                    this.vocabularyOptionsCache = {};
+                    this.currentFinalTestOrder = {};
+                    
+                    this.saveProgress();
+                    
+                    // إغلاق النوافذ وإعادة فتح الاختبار
+                    document.getElementById('autoResultModal').classList.remove('active');
+                    this.closeFinalTestModal();
+                    
+                    setTimeout(() => {
+                        this.startFinalTest();
+                    }, 300);
                 }
             }
 
@@ -2944,6 +3320,14 @@
             closeFinalTestModal() {
                 document.getElementById('finalTestModal').classList.remove('active');
                 this.stopTestTimer();
+                this.isTestSubmitted = false;
+                this.allQuestionsAnswered = false;
+                
+                // إعادة تعيين الحاوية التلقائية
+                const autoResultContainer = document.getElementById('autoResultContainer');
+                if (autoResultContainer) {
+                    autoResultContainer.innerHTML = '';
+                }
             }
 
             renderFinalTest() {
@@ -3673,314 +4057,227 @@
             }
 
             updateWritingAnswer(value) {
-                this.finalTestAnswers.writing = value
+                this.finalTestAnswers.writing = value;
                 this.saveProgress();
-                        this.updateFinalTestProgress();
-                    }
+                this.updateFinalTestProgress();
+            }
 
-                    submitFinalTest() {
+            startTestTimer() {
+                this.timeRemaining = 60 * 60; // 60 دقيقة
+                this.updateTimerDisplay();
+                
+                this.testTimer = setInterval(() => {
+                    this.timeRemaining--;
+                    this.updateTimerDisplay();
+                    
+                    if (this.timeRemaining <= 0) {
                         this.stopTestTimer();
-                        
-                        let totalScore = 0;
-                        let maxScore = 40;
-                        let details = [];
-                        
-                        // Grammar - 9 أسئلة
-                        let grammarScore = 0;
-                        const grammarQuestions = this.currentFinalTestOrder.grammar || {};
-                        Object.keys(this.finalTestAnswers.grammar).forEach(questionId => {
-                            const userAnswer = this.finalTestAnswers.grammar[questionId];
-                            const questionInfo = grammarQuestions[questionId];
-                            if (questionInfo && userAnswer === questionInfo.correctAnswer) {
-                                grammarScore++;
-                            }
-                        });
-                        totalScore += grammarScore;
-                        details.push(`Grammar: ${grammarScore}/9`);
-                        
-                        // Orthography - 5 أسئلة
-                        let orthographyScore = 0;
-                        const orthographyQuestions = this.currentFinalTestOrder.orthography || {};
-                        Object.keys(this.finalTestAnswers.orthography).forEach(questionId => {
-                            const userAnswer = this.finalTestAnswers.orthography[questionId];
-                            const questionInfo = orthographyQuestions[questionId];
-                            if (questionInfo && userAnswer === questionInfo.correctAnswer) {
-                                orthographyScore++;
-                            }
-                        });
-                        totalScore += orthographyScore;
-                        details.push(`Orthography: ${orthographyScore}/5`);
-                        
-                        // Vocabulary - 9 أسئلة
-                        let vocabularyScore = 0;
-                        finalTestData.vocabulary.forEach(item => {
-                            if (this.finalTestAnswers.vocabulary[item.id] === item.correctMatch) {
-                                vocabularyScore++;
-                            }
-                        });
-                        totalScore += vocabularyScore;
-                        details.push(`Vocabulary: ${vocabularyScore}/9`);
-                        
-                        // Reading - 9 أسئلة
-                        let readingScore = 0;
-                        const readingQuestions = this.currentFinalTestOrder.reading || {};
-                        
-                        // التحقق من جميع الأسئلة التسعة
-                        finalTestData.reading.forEach(readingItem => {
-                            const questionId = readingItem.id;
-                            const userAnswer = this.finalTestAnswers.reading[questionId];
-                            const questionInfo = readingQuestions[questionId];
-                            
-                            if (userAnswer !== undefined && questionInfo) {
-                                if (userAnswer === questionInfo.correctAnswer) {
-                                    readingScore++;
-                                }
-                            }
-                        });
-                        totalScore += readingScore;
-                        details.push(`Reading: ${readingScore}/9`);
-                        
-                        // Writing - 8 نقاط
-                        let writingScore = 0;
-                        const writingAnswer = this.finalTestAnswers.writing || '';
-                        if (writingAnswer.trim().length > 0) {
-                            const usedWords = finalTestData.writing.words.filter(word => 
-                                writingAnswer.toLowerCase().includes(word.toLowerCase())
-                            ).length;
-                            
-                            const sentenceCount = (writingAnswer.match(/[.!?]/g) || []).length;
-                            
-                            if (usedWords >= 8 && sentenceCount >= 3 && sentenceCount <= 5) {
-                                writingScore = 8;
-                            } else if (usedWords >= 6 && sentenceCount >= 2) {
-                                writingScore = 6;
-                            } else if (usedWords >= 4 && sentenceCount >= 1) {
-                                writingScore = 4;
-                            } else if (writingAnswer.trim().length > 20) {
-                                writingScore = 2;
-                            }
-                        }
-                        totalScore += writingScore;
-                        details.push(`Writing: ${writingScore}/8`);
-                        
-                        this.finalTestScore = totalScore;
-                        this.saveProgress();
-                        
-                        const percentage = Math.round((totalScore / maxScore) * 100);
-                        
-                        const resultHTML = `
-                            <div style="text-align: center; padding: 1.2rem;">
-                                <div style="background: ${percentage >= 60 ? 'linear-gradient(135deg, var(--secondary) 0%, #05c490 100%)' : 'linear-gradient(135deg, var(--error) 0%, #d43f8d 100%)'}; 
-                                    width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
-                                    <i class="fas fa-${percentage >= 60 ? 'trophy' : 'graduation-cap'}" style="font-size: 2.2rem; color: white;"></i>
-                                </div>
-                                
-                                <h3 style="color: var(--text-primary); margin-bottom: 0.8rem; font-size: 1.1rem;">Final Test Result</h3>
-                                
-                                <div style="background: white; border-radius: 12px; padding: 1.2rem; max-width: 500px; margin: 0 auto 1.2rem; box-shadow: var(--shadow);">
-                                    <div style="font-size: 2.2rem; font-weight: 800; color: ${percentage >= 60 ? 'var(--secondary)' : 'var(--error)'}; margin-bottom: 0.8rem;">
-                                        ${totalScore}/${maxScore}
-                                    </div>
-                                    <div style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.8rem;">
-                                        ${percentage}%
-                                    </div>
-                                    <div style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
-                                        ${percentage >= 60 ? '✅ Pass - Well done!' : '⏳ Need more practice'}
-                                    </div>
-                                    
-                                    <div style="text-align: left; margin-top: 1.2rem; background: #f8f9fa; padding: 0.8rem; border-radius: 8px; font-size: 0.9rem;">
-                                        <div style="margin-bottom: 0.4rem; font-weight: 600;">Result Details:</div>
-                                        ${details.map(detail => `<div style="margin-bottom: 0.2rem;">${detail}</div>`).join('')}
-                                        <div style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border); font-weight: 600;">
-                                            Total Score: ${totalScore}/40
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="btn btn-primary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">
-                                    <i class="fas fa-check-circle"></i>
-                                    OK
-                                </button>
-                            </div>
-                        `;
-                        
-                        document.getElementById('finalTestContent').innerHTML = resultHTML;
-                    }
-
-                    showTestPreview() {
-                        const container = document.getElementById('finalTestContent');
-                        container.innerHTML = `
-                            <div style="text-align: center; padding: 1.2rem;">
-                                <div style="background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
-                                    <i class="fas fa-graduation-cap" style="font-size: 2rem; color: white;"></i>
-                                </div>
-                                
-                                <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.1rem;">Final Test Preview</h3>
-                                
-                                <div style="max-width: 800px; margin: 0 auto 1.5rem; text-align: left; font-size: 0.9rem;">
-                                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1rem;">Test Structure:</h4>
-                                    
-                                    <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.2rem;">
-                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                                <div style="width: 34px; height: 34px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                                    <i class="fas fa-language"></i>
-                                                </div>
-                                                <div style="text-align: left;">
-                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">9</div>
-                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Grammar</div>
-                                                </div>
-                                            </div>
-                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the correct answer</div>
-                                        </div>
-                                        
-                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--warning); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                                <div style="width: 34px; height: 34px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                                    <i class="fas fa-spell-check"></i>
-                                                </div>
-                                                <div style="text-align: left;">
-                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--warning);">5</div>
-                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Orthography</div>
-                                                </div>
-                                            </div>
-                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the correct letter</div>
-                                        </div>
-                                        
-                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                                <div style="width: 34px; height: 34px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                                    <i class="fas fa-book"></i>
-                                                </div>
-                                                <div style="text-align: left;">
-                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">9</div>
-                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Vocabulary</div>
-                                                </div>
-                                            </div>
-                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the word that matches the picture</div>
-                                        </div>
-                                        
-                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--info); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                                <div style="width: 34px; height: 34px; background: var(--info); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                                    <i class="fas fa-book-reader"></i>
-                                                </div>
-                                                <div style="text-align: left;">
-                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--info);">9</div>
-                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Reading</div>
-                                                </div>
-                                            </div>
-                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">True or False</div>
-                                        </div>
-                                        
-                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--error); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                                <div style="width: 34px; height: 34px; background: var(--error); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                                    <i class="fas fa-edit"></i>
-                                                </div>
-                                                <div style="text-align: left;">
-                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--error);">8</div>
-                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Writing</div>
-                                                </div>
-                                            </div>
-                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Write a short paragraph</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); border-radius: 12px; color: white;">
-                                        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.2rem;">
-                                            <div style="text-align: center;">
-                                                <div style="font-size: 1.8rem; font-weight: 800;">40</div>
-                                                <div style="font-size: 0.8rem;">Total Questions</div>
-                                            </div>
-                                            <div style="text-align: center;">
-                                                <div style="font-size: 1.8rem; font-weight: 800;">60</div>
-                                                <div style="font-size: 0.8rem;">Minutes (Time)</div>
-                                            </div>
-                                            <div style="text-align: center;">
-                                                <div style="font-size: 1.8rem; font-weight: 800;">100</div>
-                                                <div style="font-size: 0.8rem;">Full Score</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div style="margin-top: 1.5rem;">
-                                    <button class="btn btn-primary" onclick="app.startFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin: 0 0.4rem 0.4rem;">
-                                        <i class="fas fa-play-circle"></i>
-                                        Start Test Now
-                                    </button>
-                                    <button class="btn btn-secondary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.2rem; font-size: 0.95rem;">
-                                        <i class="fas fa-times-circle"></i>
-                                        Close
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                        
-                        document.getElementById('finalTestModal').classList.add('active');
-                    }
-
-                    showPasswordAccess() {
-                        const passwordAccess = document.getElementById('passwordAccess');
-                        passwordAccess.style.display = 'block';
-                        document.getElementById('passwordMessage').style.display = 'none';
-                    }
-
-                    checkPassword() {
-                        const passwordInput = document.getElementById('passwordInput');
-                        const passwordMessage = document.getElementById('passwordMessage');
-                        
-                        if (passwordInput.value === '7245') {
-                            this.passwordUnlocked = true;
-                            this.saveProgress();
-                            this.updateFinalTestStatus();
-                            
-                            passwordMessage.textContent = '✅ Final test unlocked successfully!';
-                            passwordMessage.style.color = 'var(--secondary)';
-                            passwordMessage.style.display = 'block';
-                            
-                            setTimeout(() => {
-                                document.getElementById('passwordAccess').style.display = 'none';
-                                passwordInput.value = '';
-                            }, 2000);
-                        } else {
-                            passwordMessage.textContent = '❌ Wrong password!';
-                            passwordMessage.style.color = 'var(--error)';
-                            passwordMessage.style.display = 'block';
-                            passwordInput.value = '';
+                        if (!this.isTestSubmitted) {
+                            this.calculateAndShowResult();
                         }
                     }
+                }, 1000);
+            }
 
-                    reviewUnit(unitId) {
-                        const unit = this.units.find(u => u.id === unitId);
-                        if (!unit) return;
-                        
-                        const answeredCount = Object.keys(this.unitAnswers[unit.id]?.answers || {}).length;
-                        const correctCount = answeredCount > 0 ? 
-                            Object.keys(this.unitAnswers[unit.id]?.answers || {}).filter(qId => {
-                                const question = unitQuestionsData[unit.id].find(q => q.id == qId);
-                                return question && this.unitAnswers[unit.id].answers[qId] === question.correctAnswer;
-                            }).length : 0;
-                        
-                        alert(`Review ${unit.name}\n\n` +
-                              `Questions Answered: ${answeredCount}/${unit.questionsNeeded}\n` +
-                              `Correct Answers: ${correctCount}/${answeredCount}\n` +
-                              `Accuracy: ${answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0}%\n\n` +
-                              `${unit.questionsCompleted >= unit.questionsNeeded ? 
-                                '✅ Unit Completed!' : 
-                                `⏳ You need to complete ${unit.questionsNeeded - unit.questionsCompleted} more questions`}`);
-                    }
+            stopTestTimer() {
+                if (this.testTimer) {
+                    clearInterval(this.testTimer);
+                    this.testTimer = null;
+                }
+            }
 
-                    resetProgress() {
-                        if (confirm('Are you sure you want to reset progress? All answers and progress will be deleted.')) {
-                            localStorage.removeItem('superGoal3_progress');
-                            location.reload();
-                        }
+            updateTimerDisplay() {
+                const minutes = Math.floor(this.timeRemaining / 60);
+                const seconds = this.timeRemaining % 60;
+                const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                document.getElementById('timeRemaining').textContent = timeString;
+                
+                // تغيير اللون عندما يقل الوقت عن 10 دقائق
+                const timerElement = document.querySelector('.timer-container');
+                if (timerElement) {
+                    if (this.timeRemaining < 600) { // 10 دقائق
+                        timerElement.style.background = 'linear-gradient(135deg, var(--error) 0%, #d43f8d 100%)';
+                    } else if (this.timeRemaining < 1200) { // 20 دقيقة
+                        timerElement.style.background = 'linear-gradient(135deg, var(--warning) 0%, #ff9a3c 100%)';
                     }
                 }
+            }
 
-                const app = new SuperGoalApp();
-            </script>
-        </body>
-        </html>
+            showTestPreview() {
+                const container = document.getElementById('finalTestContent');
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 1.2rem;">
+                        <div style="background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
+                            <i class="fas fa-graduation-cap" style="font-size: 2rem; color: white;"></i>
+                        </div>
+                        
+                        <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.1rem;">Final Test Preview</h3>
+                        
+                        <div style="max-width: 800px; margin: 0 auto 1.5rem; text-align: left; font-size: 0.9rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1rem;">Test Structure:</h4>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.2rem;">
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-language"></i>
+                                        </div>
+                                        <div style="text-align: left;">
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">9</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Grammar</div>
+                                        </div>
+                                    </div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the correct answer</div>
+                                </div>
+                                
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--warning); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-spell-check"></i>
+                                        </div>
+                                        <div style="text-align: left;">
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--warning);">5</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Orthography</div>
+                                        </div>
+                                    </div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the correct letter</div>
+                                </div>
+                                
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                        <div style="text-align: left;">
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">9</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Vocabulary</div>
+                                        </div>
+                                    </div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the word that matches the picture</div>
+                                </div>
+                                
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--info); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--info); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-book-reader"></i>
+                                        </div>
+                                        <div style="text-align: left;">
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--info);">9</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Reading</div>
+                                        </div>
+                                    </div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">True or False</div>
+                                </div>
+                                
+                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--error); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                        <div style="width: 34px; height: 34px; background: var(--error); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-edit"></i>
+                                        </div>
+                                        <div style="text-align: left;">
+                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--error);">8</div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Writing</div>
+                                        </div>
+                                    </div>
+                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Write a short paragraph</div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); border-radius: 12px; color: white;">
+                                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.2rem;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.8rem; font-weight: 800;">40</div>
+                                        <div style="font-size: 0.8rem;">Total Questions</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.8rem; font-weight: 800;">60</div>
+                                        <div style="font-size: 0.8rem;">Minutes (Time)</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.8rem; font-weight: 800;">100</div>
+                                        <div style="font-size: 0.8rem;">Full Score</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <button class="btn btn-primary" onclick="app.startFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin: 0 0.4rem 0.4rem;">
+                                <i class="fas fa-play-circle"></i>
+                                Start Test Now
+                            </button>
+                            <button class="btn btn-secondary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.2rem; font-size: 0.95rem;">
+                                <i class="fas fa-times-circle"></i>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('finalTestModal').classList.add('active');
+            }
+
+            showPasswordAccess() {
+                const passwordAccess = document.getElementById('passwordAccess');
+                passwordAccess.style.display = 'block';
+                document.getElementById('passwordMessage').style.display = 'none';
+            }
+
+            checkPassword() {
+                const passwordInput = document.getElementById('passwordInput');
+                const passwordMessage = document.getElementById('passwordMessage');
+                
+                if (passwordInput.value === '7245') {
+                    this.passwordUnlocked = true;
+                    this.saveProgress();
+                    this.updateFinalTestStatus();
+                    
+                    passwordMessage.textContent = '✅ Final test unlocked successfully!';
+                    passwordMessage.style.color = 'var(--secondary)';
+                    passwordMessage.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        document.getElementById('passwordAccess').style.display = 'none';
+                        passwordInput.value = '';
+                    }, 2000);
+                } else {
+                    passwordMessage.textContent = '❌ Wrong password!';
+                    passwordMessage.style.color = 'var(--error)';
+                    passwordMessage.style.display = 'block';
+                    passwordInput.value = '';
+                }
+            }
+
+            reviewUnit(unitId) {
+                const unit = this.units.find(u => u.id === unitId);
+                if (!unit) return;
+                
+                const answeredCount = Object.keys(this.unitAnswers[unit.id]?.answers || {}).length;
+                const correctCount = answeredCount > 0 ? 
+                    Object.keys(this.unitAnswers[unit.id]?.answers || {}).filter(qId => {
+                        const question = unitQuestionsData[unit.id].find(q => q.id == qId);
+                        return question && this.unitAnswers[unit.id].answers[qId] === question.correctAnswer;
+                    }).length : 0;
+                
+                alert(`Review ${unit.name}\n\n` +
+                      `Questions Answered: ${answeredCount}/${unit.questionsNeeded}\n` +
+                      `Correct Answers: ${correctCount}/${answeredCount}\n` +
+                      `Accuracy: ${answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0}%\n\n` +
+                      `${unit.questionsCompleted >= unit.questionsNeeded ? 
+                        '✅ Unit Completed!' : 
+                        `⏳ You need to complete ${unit.questionsNeeded - unit.questionsCompleted} more questions`}`);
+            }
+
+            resetProgress() {
+                if (confirm('Are you sure you want to reset progress? All answers and progress will be deleted.')) {
+                    localStorage.removeItem('superGoal3_progress');
+                    location.reload();
+                }
+            }
+        }
+
+        const app = new SuperGoalApp();
+    </script>
+</body>
+</html>
