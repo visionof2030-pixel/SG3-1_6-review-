@@ -1,4 +1,3 @@
-
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -1152,6 +1151,26 @@
             margin-top: 5px;
         }
 
+        /* تنسيقات للغة العربية في التغذية الراجعة */
+        .arabic-explanation {
+            background: #f0f8ff;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+            border-right: 3px solid var(--primary);
+            font-family: 'Almarai', 'Inter', sans-serif;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .arabic-title {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: block;
+            font-family: 'Almarai', 'Inter', sans-serif;
+        }
+
         @media (max-width: 900px) {
             .vocabulary-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1509,8 +1528,8 @@
             <div style="padding: 1rem; border-top: 1px solid var(--border); text-align: center;">
                 <button class="btn btn-success" onclick="app.submitFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin-bottom: 0.5rem;">
                     <i class="fas fa-paper-plane"></i>
-                    
-                
+                    Submit Test
+                </button>
                 <div style="color: var(--text-secondary); font-size: 0.85rem;">
                     <span id="testProgressText">0/40 questions answered</span>
                 </div>
@@ -1594,6 +1613,12 @@
                         wrong: "Wrong. Rule: Frequency adverbs like hardly ever come before the main verb.",
                         grammar: "Frequency adverbs (Adverbs of Frequency) come before the main verb: always, usually, often, sometimes, rarely, hardly ever, never",
                         example: "Example: I always drink coffee. She never eats meat. They sometimes go to the gym."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! الجملة الصحيحة هي 'I hardly ever eat vegetables.'",
+                        wrong: "خطأ. القاعدة: ظروف التكرار مثل 'hardly ever' تأتي قبل الفعل الرئيسي.",
+                        grammar: "ظروف التكرار تأتي قبل الفعل الرئيسي: always, usually, often, sometimes, rarely, hardly ever, never",
+                        example: "مثال: I always drink coffee. She never eats meat. They sometimes go to the gym."
                     }
                 },
                 {
@@ -1606,6 +1631,12 @@
                         wrong: "Wrong. 'How often' is used to ask how frequently something happens.",
                         grammar: "Frequency questions: How often + do/does + subject + verb?",
                         example: "Example: How often do you go to the gym? How often does she visit her family?"
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'How often' تستفسر عن التكرار.",
+                        wrong: "خطأ. 'How often' تستخدم للسؤال عن تكرار حدوث شيء ما.",
+                        grammar: "أسئلة التكرار: How often + do/does + subject + verb?",
+                        example: "مثال: How often do you go to the gym? How often does she visit her family?"
                     }
                 },
                 {
@@ -1618,6 +1649,12 @@
                         wrong: "Wrong. frequently = often = frequently, many times.",
                         grammar: "Frequency vocabulary: Always → Usually → Often/Frequently → Sometimes → Rarely/Seldom → Never",
                         example: "Example: She frequently visits the library. = She often visits the library."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'Frequently' تعني 'often' (كثيراً، مرات عديدة).",
+                        wrong: "خطأ. frequently = often = كثيراً، مرات عديدة.",
+                        grammar: "مفردات التكرار: Always → Usually → Often/Frequently → Sometimes → Rarely/Seldom → Never",
+                        example: "مثال: She frequently visits the library. = She often visits the library."
                     }
                 },
                 {
@@ -1630,6 +1667,12 @@
                         wrong: "Wrong. once in a while = occasionally = sometimes, from time to time.",
                         grammar: "Time expressions: Once in a while = Occasionally = sometimes",
                         example: "Example: I go to the cinema once in a while. = I go to the cinema occasionally."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'Once in a while' تعني 'occasionally' (أحياناً، من وقت لآخر).",
+                        wrong: "خطأ. once in a while = occasionally = أحياناً، من وقت لآخر.",
+                        grammar: "التعبيرات الزمنية: Once in a while = Occasionally = أحياناً",
+                        example: "مثال: I go to the cinema once in a while. = I go to the cinema occasionally."
                     }
                 },
                 {
@@ -1647,6 +1690,12 @@
                         wrong: "Wrong. Rule: Neither + of + plural noun + singular verb",
                         grammar: "Neither/Either: Neither of + plural noun + singular verb, Either of + plural noun + singular verb",
                         example: "Example: Neither of the books is interesting. Either of the answers is correct."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'Neither of them drinks coffee.' هي الجملة الصحيحة.",
+                        wrong: "خطأ. القاعدة: Neither + of + plural noun + singular verb",
+                        grammar: "Neither/Either: Neither of + plural noun + singular verb, Either of + plural noun + singular verb",
+                        example: "مثال: Neither of the books is interesting. Either of the answers is correct."
                     }
                 }
             ],
@@ -1661,6 +1710,12 @@
                         wrong: "Wrong. The verb 'go' is conjugated in simple past: go → went → gone",
                         grammar: "Simple Past: Subject + verb(past form) + time expression",
                         example: "Example: I went to school yesterday. She visited her friend last week."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'went' هو صيغة الماضي البسيط للفعل 'go'.",
+                        wrong: "خطأ. الفعل 'go' يتصرف في الماضي البسيط: go → went → gone",
+                        grammar: "الماضي البسيط: Subject + verb(past form) + time expression",
+                        example: "مثال: I went to school yesterday. She visited her friend last week."
                     }
                 },
                 {
@@ -1678,6 +1733,12 @@
                         wrong: "Wrong. Used to + base verb to express past habits that have stopped now.",
                         grammar: "Used to: Subject + used to + base verb (for past habits)",
                         example: "Example: I used to play football when I was young. She used to live in London."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'I used to walk to school every day.' هي الجملة الصحيحة.",
+                        wrong: "خطأ. Used to + base verb للتعبير عن العادات السابقة التي توقفت الآن.",
+                        grammar: "Used to: Subject + used to + base verb (للعادة السابقة)",
+                        example: "مثال: I used to play football when I was young. She used to live in London."
                     }
                 },
                 {
@@ -1690,6 +1751,12 @@
                         wrong: "Wrong. donate = to give money, food, clothes, etc. to help people",
                         grammar: "Vocabulary: donate (verb) → donation (noun) → donor (agent noun)",
                         example: "Example: He donated money to the hospital. They donated clothes to the poor."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'Donated' تعني 'gave for charity' (تبرع، أعطى للمنظمات الخيرية).",
+                        wrong: "خطأ. donate = إعطاء المال، الطعام، الملابس، إلخ للمساعدة",
+                        grammar: "المفردات: donate (فعل) → donation (اسم) → donor (اسم الفاعل)",
+                        example: "مثال: He donated money to the hospital. They donated clothes to the poor."
                     }
                 },
                 {
@@ -1702,6 +1769,12 @@
                         wrong: "Wrong. appointment = an arrangement to meet someone at a particular time",
                         grammar: "Related words: appointment (appointment) → schedule (schedule) → meeting (meeting)",
                         example: "Example: I have a doctor's appointment at 3 PM. She made an appointment with her lawyer."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'Appointment' تعني 'a planned meeting' (موعد، لقاء مخطط).",
+                        wrong: "خطأ. appointment = ترتيب للقاء شخص ما في وقت محدد",
+                        grammar: "الكلمات ذات الصلة: appointment (موعد) → schedule (جدول) → meeting (اجتماع)",
+                        example: "مثال: I have a doctor's appointment at 3 PM. She made an appointment with her lawyer."
                     }
                 },
                 {
@@ -1719,6 +1792,12 @@
                         wrong: "Wrong. Passive voice form in simple past: was/were + past participle",
                         grammar: "Passive Voice (Simple Past): Subject + was/were + past participle",
                         example: "Example: The book was written in 2020. The house was built last year."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'He was called 'Athlete of the Year.'' هي الجملة الصحيحة.",
+                        wrong: "خطأ. صيغة المبني للمجهول في الماضي البسيط: was/were + past participle",
+                        grammar: "المبني للمجهول (الماضي البسيط): Subject + was/were + past participle",
+                        example: "مثال: The book was written in 2020. The house was built last year."
                     }
                 }
             ],
@@ -1733,6 +1812,12 @@
                         wrong: "Wrong. Present continuous is used for actions happening now: am/is/are + verb-ing",
                         grammar: "Present Continuous: Subject + am/is/are + verb-ing (for actions happening now)",
                         example: "Example: I am studying now. They are watching TV at the moment."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'is checking' هي صيغة المضارع المستمر المناسبة مع 'right now'.",
+                        wrong: "خطأ. المضارع المستمر يستخدم للأحداث التي تحدث الآن: am/is/are + verb-ing",
+                        grammar: "المضارع المستمر: Subject + am/is/are + verb-ing (للأحداث التي تحدث الآن)",
+                        example: "مثال: I am studying now. They are watching TV at the moment."
                     }
                 },
                 {
@@ -1745,6 +1830,12 @@
                         wrong: "Wrong. Will + base verb is used for predictions, promises and decisions made at the moment of speaking.",
                         grammar: "Simple Future with will: Subject + will + base verb",
                         example: "Example: It will probably rain later. I will help you with your homework."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'will' تستخدم للتنبؤات والقرارات الفورية.",
+                        wrong: "خطأ. Will + base verb تستخدم للتنبؤات، الوعود والقرارات المتخذة لحظة التحدث.",
+                        grammar: "المستقبل البسيط مع will: Subject + will + base verb",
+                        example: "مثال: It will probably rain later. I will help you with your homework."
                     }
                 },
                 {
@@ -1757,6 +1848,12 @@
                         wrong: "Wrong. itinerary = a plan or schedule of a trip",
                         grammar: "Travel vocabulary: itinerary (travel plan) → passport (passport) → luggage (luggage)",
                         example: "Example: The travel agency sent us the itinerary for our trip to Paris."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'Itinerary' تعني 'a travel plan' (خطة السفر، جدول الرحلة).",
+                        wrong: "خطأ. itinerary = خطة أو جدول رحلة",
+                        grammar: "مفردات السفر: itinerary (خطة السفر) → passport (جواز السفر) → luggage (الأمتعة)",
+                        example: "مثال: The travel agency sent us the itinerary for our trip to Paris."
                     }
                 },
                 {
@@ -1769,6 +1866,12 @@
                         wrong: "Wrong. departure = the act of leaving a place (departure) → arrival = arrival",
                         grammar: "Antonyms: departure (departure) ↔ arrival (arrival)",
                         example: "Example: The departure time is 6 PM. Arrival time is 8 PM."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'Departure' تعني 'leaving' (مغادرة، ترك).",
+                        wrong: "خطأ. departure = فعل مغادرة مكان ما (مغادرة) → arrival = وصول",
+                        grammar: "المتضادات: departure (مغادرة) ↔ arrival (وصول)",
+                        example: "مثال: The departure time is 6 PM. Arrival time is 8 PM."
                     }
                 },
                 {
@@ -1781,6 +1884,12 @@
                         wrong: "Wrong. to + verb (infinitive) can give a reason or purpose for the main action.",
                         grammar: "Infinitive to give reason: Subject + verb + to + base verb (to give reason or purpose)",
                         example: "Example: I went to the store to buy milk. She studies hard to get good grades."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'to study' تعطي سبب المجيء مبكراً.",
+                        wrong: "خطأ. to + verb (المصدر) يمكن أن يعطي سبباً أو غرضاً للفعل الرئيسي.",
+                        grammar: "المصدر لإعطاء السبب: Subject + verb + to + base verb (لإعطاء سبب أو غرض)",
+                        example: "مثال: I went to the store to buy milk. She studies hard to get good grades."
                     }
                 }
             ],
@@ -1795,6 +1904,12 @@
                         wrong: "Wrong. a few + plural countable nouns, a little + uncountable nouns",
                         grammar: "Quantity with nouns: a few (few) + plural countable, a little (little) + uncountable, enough (enough) + both",
                         example: "Example: There are a few apples. There is a little water. We have enough money."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'a few' تستخدم مع الأسماء المعدودة (tomatoes).",
+                        wrong: "خطأ. a few + plural countable nouns, a little + uncountable nouns",
+                        grammar: "الكمية مع الأسماء: a few (قليل) + plural countable, a little (قليل) + uncountable, enough (كافي) + both",
+                        example: "مثال: There are a few apples. There is a little water. We have enough money."
                     }
                 },
                 {
@@ -1807,6 +1922,12 @@
                         wrong: "Wrong. something (something) is used in positive sentences, anything (anything) in negative and interrogative sentences.",
                         grammar: "Indefinite words: something (in positive sentences), anything (in negation and questions), nothing (nothing)",
                         example: "Example: I want something to drink. Do you want anything? I have nothing to say."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'something' تستخدم في الجمل الإيجابية عندما لا نعرف الشيء المحدد.",
+                        wrong: "خطأ. something (شيء ما) تستخدم في الجمل الإيجابية، anything (أي شيء) في الجمل المنفية والاستفهامية.",
+                        grammar: "الكلمات غير المحددة: something (في الجمل الإيجابية), anything (في النفي والاستفهام), nothing (لا شيء)",
+                        example: "مثال: I want something to drink. Do you want anything? I have nothing to say."
                     }
                 },
                 {
@@ -1819,6 +1940,12 @@
                         wrong: "Wrong. groceries = food and other items sold at a grocery store or supermarket",
                         grammar: "Purchases: groceries (groceries) → supermarket (supermarket) → shopping list (shopping list)",
                         example: "Example: I need to buy groceries for the week. We're out of milk and bread."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'Groceries' تعني 'food items' (مواد غذائية، بقالة).",
+                        wrong: "خطأ. groceries = الطعام والعناصر الأخرى التي تباع في متجر البقالة أو السوبرماركت",
+                        grammar: "المشتريات: groceries (بقالة) → supermarket (سوبرماركت) → shopping list (قائمة التسوق)",
+                        example: "مثال: I need to buy groceries for the week. We're out of milk and bread."
                     }
                 },
                 {
@@ -1831,6 +1958,12 @@
                         wrong: "Wrong. recipe = a set of instructions for preparing a particular dish",
                         grammar: "Cooking: recipe (recipe) → ingredients (ingredients) → instructions (instructions)",
                         example: "Example: This recipe for chocolate cake is delicious. Follow the recipe carefully."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'Recipe' تعني 'cooking steps' (وصفة، خطوات الطهي).",
+                        wrong: "خطأ. recipe = مجموعة من التعليمات لإعداد طبق معين",
+                        grammar: "الطبخ: recipe (وصفة) → ingredients (مكونات) → instructions (تعليمات)",
+                        example: "مثال: This recipe for chocolate cake is delicious. Follow the recipe carefully."
                     }
                 },
                 {
@@ -1848,6 +1981,12 @@
                         wrong: "Wrong. so (so) means result, because (because) means reason.",
                         grammar: "Cause and effect: because (because) + cause, so (so) + result",
                         example: "Example: It was raining, so we stayed home. We stayed home because it was raining."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'He was tired, so he slept.' هي الجملة الصحيحة.",
+                        wrong: "خطأ. so (لذلك) تعني النتيجة، because (لأن) تعني السبب.",
+                        grammar: "السبب والنتيجة: because (لأن) + سبب, so (لذلك) + نتيجة",
+                        example: "مثال: It was raining, so we stayed home. We stayed home because it was raining."
                     }
                 }
             ],
@@ -1862,6 +2001,12 @@
                         wrong: "Wrong. Present perfect: have/has + past participle with since (since) or for (for)",
                         grammar: "Present Perfect: Subject + have/has + past participle + since/for + time",
                         example: "Example: She has worked here since 2015. They have known each other for ten years."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'have lived' هي صيغة المضارع التام المناسبة مع 'since'.",
+                        wrong: "خطأ. المضارع التام: have/has + past participle مع since (منذ) أو for (لمدة)",
+                        grammar: "المضارع التام: Subject + have/has + past participle + since/for + time",
+                        example: "مثال: She has worked here since 2015. They have known each other for ten years."
                     }
                 },
                 {
@@ -1874,6 +2019,12 @@
                         wrong: "Wrong. How long? (since when? / how long?) is used with present perfect.",
                         grammar: "Duration questions: How long + have/has + subject + past participle?",
                         example: "Example: How long have you studied English? How long has she lived in Riyadh?"
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'How long' تسأل عن المدة الزمنية.",
+                        wrong: "خطأ. How long? (منذ متى؟ / كم من الوقت؟) تستخدم مع المضارع التام.",
+                        grammar: "أسئلة المدة: How long + have/has + subject + past participle?",
+                        example: "مثال: How long have you studied English? How long has she lived in Riyadh?"
                     }
                 },
                 {
@@ -1886,6 +2037,12 @@
                         wrong: "Wrong. recently = not long ago; in the recent past",
                         grammar: "Time expressions: recently (recently), lately (lately), these days (these days)",
                         example: "Example: I've been very busy recently. Have you seen any good movies recently?"
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'Recently' تعني 'not long ago' (مؤخراً، حديثاً).",
+                        wrong: "خطأ. recently = ليس منذ وقت طويل؛ في الماضي القريب",
+                        grammar: "التعبيرات الزمنية: recently (مؤخراً), lately (في الآونة الأخيرة), these days (هذه الأيام)",
+                        example: "مثال: I've been very busy recently. Have you seen any good movies recently?"
                     }
                 },
                 {
@@ -1898,6 +2055,12 @@
                         wrong: "Wrong. invention = something that has been designed or created for the first time",
                         grammar: "Innovation: invention (invention) → inventor (inventor) → innovative (innovative)",
                         example: "Example: The telephone was an important invention. He has many inventions to his name."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'Invention' تعني 'innovate product' (اختراع، ابتكار).",
+                        wrong: "خطأ. invention = شيء تم تصميمه أو إنشاؤه لأول مرة",
+                        grammar: "الابتكار: invention (اختراع) → inventor (مخترع) → innovative (مبتكر)",
+                        example: "مثال: The telephone was an important invention. He has many inventions to his name."
                     }
                 },
                 {
@@ -1915,6 +2078,12 @@
                         wrong: "Wrong. Present perfect passive form: have/has + been + past participle",
                         grammar: "Present Perfect Passive: Subject + have/has + been + past participle",
                         example: "Example: The work has been completed. The letters have been sent."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'The phone has been repaired.' هي الصيغة الصحيحة.",
+                        wrong: "خطأ. صيغة المضارع التام المبني للمجهول: have/has + been + past participle",
+                        grammar: "المضارع التام المبني للمجهول: Subject + have/has + been + past participle",
+                        example: "مثال: The work has been completed. The letters have been sent."
                     }
                 }
             ],
@@ -1929,6 +2098,12 @@
                         wrong: "Wrong. Comparative form of short adjectives: adjective + -er + than",
                         grammar: "Comparative forms: Short adjectives: adjective + -er + than, Long adjectives: more + adjective + than",
                         example: "Example: big → bigger, small → smaller, beautiful → more beautiful"
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'safer' هي صيغة المقارنة للصفة 'safe'.",
+                        wrong: "خطأ. صيغة المقارنة للصفات القصيرة: adjective + -er + than",
+                        grammar: "صيغ المقارنة: الصفات القصيرة: adjective + -er + than, الصفات الطويلة: more + adjective + than",
+                        example: "مثال: big → bigger, small → smaller, beautiful → more beautiful"
                     }
                 },
                 {
@@ -1941,6 +2116,12 @@
                         wrong: "Wrong. In indirect questions we use normal word order: subject + verb",
                         grammar: "Indirect questions: Do you know + question word + subject + verb?",
                         example: "Example: Can you tell me where the bank is? Do you know what time it is?"
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'the museum is' هي الصيغة الصحيحة في السؤال غير المباشر.",
+                        wrong: "خطأ. في الأسئلة غير المباشرة نستخدم ترتيب الكلمات الطبيعي: subject + verb",
+                        grammar: "الأسئلة غير المباشرة: Do you know + question word + subject + verb?",
+                        example: "مثال: Can you tell me where the bank is? Do you know what time it is?"
                     }
                 },
                 {
@@ -1953,6 +2134,12 @@
                         wrong: "Wrong. neighborhood = a district or community within a town or city",
                         grammar: "Places: neighborhood (neighborhood) → city (city) → street (street) → district (district)",
                         example: "Example: It's a quiet neighborhood with good schools. We've lived in this neighborhood for years."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'Neighborhood' تعني 'Surrounding area' (حي، منطقة سكنية).",
+                        wrong: "خطأ. neighborhood = منطقة أو مجتمع داخل مدينة أو بلدة",
+                        grammar: "الأماكن: neighborhood (حي) → city (مدينة) → street (شارع) → district (منطقة)",
+                        example: "مثال: It's a quiet neighborhood with good schools. We've lived in this neighborhood for years."
                     }
                 },
                 {
@@ -1965,6 +2152,12 @@
                         wrong: "Wrong. crowded = full of people, leaving little space to move",
                         grammar: "Place adjectives: crowded (crowded) → empty (empty) → quiet (quiet) → noisy (noisy)",
                         example: "Example: The market was very crowded on Friday. Avoid crowded places during flu season."
+                    },
+                    explanationAr: {
+                        correct: "صحيح! 'Crowded' تعني 'full of people' (مزدحم، مليء بالناس).",
+                        wrong: "خطأ. crowded = مليء بالناس، يترك مساحة صغيرة للتحرك",
+                        grammar: "صفات الأماكن: crowded (مزدحم) → empty (فارغ) → quiet (هادئ) → noisy (صاخب)",
+                        example: "مثال: The market was very crowded on Friday. Avoid crowded places during flu season."
                     }
                 },
                 {
@@ -1982,6 +2175,12 @@
                         wrong: "Wrong. We use 'the' with unique places like capitals, but we don't use it with city names.",
                         grammar: "Definite article 'the': used with unique places (the capital, the moon) but not with city names.",
                         example: "Example: London is the capital of England. Paris is a beautiful city."
+                    },
+                    explanationAr: {
+                        correct: "ممتاز! 'Riyadh is the capital of Saudi Arabia.' هي الجملة الصحيحة.",
+                        wrong: "خطأ. نستخدم 'the' مع الأماكن الفريدة مثل العواصم، لكننا لا نستخدمها مع أسماء المدن.",
+                        grammar: "أداة التعريف 'the': تستخدم مع الأماكن الفريدة (العاصمة، القمر) ولكن ليس مع أسماء المدن.",
+                        example: "مثال: London is the capital of England. Paris is a beautiful city."
                     }
                 }
             ]
@@ -1994,63 +2193,72 @@
                     question: "He ____ plays football on weekends.",
                     options: ["never", "always", "rarely"],
                     correctAnswer: 1,
-                    explanation: "Correct! 'always' means always or consistently. Correct sentence: He always plays football on weekends."
+                    explanation: "Correct! 'always' means always or consistently. Correct sentence: He always plays football on weekends.",
+                    explanationAr: "صحيح! 'always' تعني دائماً أو باستمرار. الجملة الصحيحة: He always plays football on weekends."
                 },
                 {
                     id: 2,
                     question: "How often ____ you drink coffee?",
                     options: ["do", "does", "did"],
                     correctAnswer: 0,
-                    explanation: "Excellent! With the pronoun 'you' we use 'do'. Correct sentence: How often do you drink coffee?"
+                    explanation: "Excellent! With the pronoun 'you' we use 'do'. Correct sentence: How often do you drink coffee?",
+                    explanationAr: "ممتاز! مع ضمير 'you' نستخدم 'do'. الجملة الصحيحة: How often do you drink coffee?"
                 },
                 {
                     id: 3,
                     question: "My friends are ____ to the museum tomorrow.",
                     options: ["go", "going", "goes"],
                     correctAnswer: 1,
-                    explanation: "Correct! We use 'going' with present continuous to express future. Correct sentence: My friends are going to the museum tomorrow."
+                    explanation: "Correct! We use 'going' with present continuous to express future. Correct sentence: My friends are going to the museum tomorrow.",
+                    explanationAr: "صحيح! نستخدم 'going' مع المضارع المستمر للتعبير عن المستقبل. الجملة الصحيحة: My friends are going to the museum tomorrow."
                 },
                 {
                     id: 4,
                     question: "They both ____ English very well.",
                     options: ["speak", "speaks", "speaking"],
                     correctAnswer: 0,
-                    explanation: "Excellent! With 'they' we use 'speak' without 's'. Correct sentence: They both speak English very well."
+                    explanation: "Excellent! With 'they' we use 'speak' without 's'. Correct sentence: They both speak English very well.",
+                    explanationAr: "ممتاز! مع 'they' نستخدم 'speak' بدون 's'. الجملة الصحيحة: They both speak English very well."
                 },
                 {
                     id: 5,
                     question: "I ____  play with toys when I was a child.",
                     options: ["use", "used", "used to"],
                     correctAnswer: 2,
-                    explanation: "Correct! 'used to' expresses a past habit. Correct sentence: I used to play with toys when I was a child."
+                    explanation: "Correct! 'used to' expresses a past habit. Correct sentence: I used to play with toys when I was a child.",
+                    explanationAr: "صحيح! 'used to' تعبر عن عادة سابقة. الجملة الصحيحة: I used to play with toys when I was a child."
                 },
                 {
                     id: 6,
                     question: "She was born ____ 2005.",
                     options: ["at", "in", "on"],
                     correctAnswer: 1,
-                    explanation: "Excellent! We use 'in' with years. Correct sentence: She was born in 2005."
+                    explanation: "Excellent! We use 'in' with years. Correct sentence: She was born in 2005.",
+                    explanationAr: "ممتاز! نستخدم 'in' مع السنوات. الجملة الصحيحة: She was born in 2005."
                 },
                 {
                     id: 7,
                     question: "He is ____ a haircut now.",
                     options: ["get", "got", "getting"],
                     correctAnswer: 2,
-                    explanation: "Correct! 'getting' is the present continuous form. Correct sentence: He is getting a haircut now."
+                    explanation: "Correct! 'getting' is the present continuous form. Correct sentence: He is getting a haircut now.",
+                    explanationAr: "صحيح! 'getting' هي صيغة المضارع المستمر. الجملة الصحيحة: He is getting a haircut now."
                 },
                 {
                     id: 8,
                     question: "I have lived here ____ three years.",
                     options: ["for", "since", "from"],
                     correctAnswer: 0,
-                    explanation: "Excellent! We use 'for' with time duration. Correct sentence: I have lived here for three years."
+                    explanation: "Excellent! We use 'for' with time duration. Correct sentence: I have lived here for three years.",
+                    explanationAr: "ممتاز! نستخدم 'for' مع المدة الزمنية. الجملة الصحيحة: I have lived here for three years."
                 },
                 {
                     id: 9,
                     question: "They didn't go to school when they ____ young.",
                     options: ["are", "were", "be"],
                     correctAnswer: 1,
-                    explanation: "Correct! 'were' is the past form of the verb 'be'. Correct sentence: They didn't go to school when they were young."
+                    explanation: "Correct! 'were' is the past form of the verb 'be'. Correct sentence: They didn't go to school when they were young.",
+                    explanationAr: "صحيح! 'were' هي صيغة الماضي للفعل 'be'. الجملة الصحيحة: They didn't go to school when they were young."
                 }
             ],
             orthography: [
@@ -2059,35 +2267,40 @@
                     question: "Which letter completes the word? '_ilk'",
                     options: ["n", "m", "l"],
                     correctAnswer: 1,
-                    explanation: "Correct! The correct word is 'milk'."
+                    explanation: "Correct! The correct word is 'milk'.",
+                    explanationAr: "صحيح! الكلمة الصحيحة هي 'milk' (حليب)."
                 },
                 {
                     id: 11,
                     question: "Which letter completes the word? 'pota_oes'",
                     options: ["t", "d", "p"],
                     correctAnswer: 0,
-                    explanation: "Excellent! The correct word is 'potatoes'."
+                    explanation: "Excellent! The correct word is 'potatoes'.",
+                    explanationAr: "ممتاز! الكلمة الصحيحة هي 'potatoes' (بطاطس)."
                 },
                 {
                     id: 12,
                     question: "Which letter completes the word? 'bre_d'",
                     options: ["e", "a", "i"],
                     correctAnswer: 1,
-                    explanation: "Correct! The correct word is 'bread'."
+                    explanation: "Correct! The correct word is 'bread'.",
+                    explanationAr: "صحيح! الكلمة الصحيحة هي 'bread' (خبز)."
                 },
                 {
                     id: 13,
                     question: "Which letter completes the word? 'fru_t'",
                     options: ["e", "i", "o"],
                     correctAnswer: 1,
-                    explanation: "Excellent! The correct word is 'fruit'."
+                    explanation: "Excellent! The correct word is 'fruit'.",
+                    explanationAr: "ممتاز! الكلمة الصحيحة هي 'fruit' (فاكهة)."
                 },
                 {
                     id: 14,
                     question: "Which letter completes the word? 'mang_'",
                     options: ["o", "a", "u"],
                     correctAnswer: 0,
-                    explanation: "Correct! The correct word is 'mango'."
+                    explanation: "Correct! The correct word is 'mango'.",
+                    explanationAr: "صحيح! الكلمة الصحيحة هي 'mango' (مانجو)."
                 }
             ],
             vocabulary: [
@@ -2106,55 +2319,64 @@
                     id: 1,
                     question: "King Salman was born in Jeddah.",
                     correctAnswer: false,
-                    explanation: "Wrong. King Salman was born in Riyadh, not Jeddah."
+                    explanation: "Wrong. King Salman was born in Riyadh, not Jeddah.",
+                    explanationAr: "خطأ. وُلد الملك سلمان في الرياض، وليس في جدة."
                 },
                 {
                     id: 2,
                     question: "He studied at the Princes' School.",
                     correctAnswer: true,
-                    explanation: "Correct. He studied at the Princes' School."
+                    explanation: "Correct. He studied at the Princes' School.",
+                    explanationAr: "صحيح. درس في مدرسة الأمراء."
                 },
                 {
                     id: 3,
                     question: "He became King in 2012.",
                     correctAnswer: false,
-                    explanation: "Wrong. He became King in 2015, not 2012."
+                    explanation: "Wrong. He became King in 2015, not 2012.",
+                    explanationAr: "خطأ. أصبح ملكاً في عام 2015، وليس 2012."
                 },
                 {
                     id: 4,
                     question: "He worked to develop the city of Riyadh.",
                     correctAnswer: true,
-                    explanation: "Correct. He worked to develop the city of Riyadh."
+                    explanation: "Correct. He worked to develop the city of Riyadh.",
+                    explanationAr: "صحيح. عمل على تطوير مدينة الرياض."
                 },
                 {
                     id: 5,
                     question: "Riyadh became smaller during his leadership.",
                     correctAnswer: false,
-                    explanation: "Wrong. Riyadh grew and became larger, not smaller."
+                    explanation: "Wrong. Riyadh grew and became larger, not smaller.",
+                    explanationAr: "خطأ. نمت الرياض وأصبحت أكبر، وليس أصغر."
                 },
                 {
                     id: 6,
                     question: "He supported humanitarian work.",
                     correctAnswer: true,
-                    explanation: "Correct. He supported humanitarian work."
+                    explanation: "Correct. He supported humanitarian work.",
+                    explanationAr: "صحيح. دعم العمل الإنساني."
                 },
                 {
                     id: 7,
                     question: "He received awards for his projects.",
                     correctAnswer: false,
-                    explanation: "Wrong. The text doesn't mention that he received awards."
+                    explanation: "Wrong. The text doesn't mention that he received awards.",
+                    explanationAr: "خطأ. النص لا يذكر أنه حصل على جوائز."
                 },
                 {
                     id: 8,
                     question: "He helped develop cities outside the Kingdom.",
                     correctAnswer: true,
-                    explanation: "Correct. He helped develop cities outside the Kingdom."
+                    explanation: "Correct. He helped develop cities outside the Kingdom.",
+                    explanationAr: "صحيح. ساعد في تطوير مدن خارج المملكة."
                 },
                 {
                     id: 9,
                     question: "The passage talks about King Salman's future plans.",
                     correctAnswer: false,
-                    explanation: "Wrong. The text talks about his past achievements, not his future plans."
+                    explanation: "Wrong. The text talks about his past achievements, not his future plans.",
+                    explanationAr: "خطأ. النص يتحدث عن إنجازاته السابقة، وليس خططه المستقبلية."
                 }
             ],
             writing: {
@@ -2611,6 +2833,10 @@
                             </div>
                             <div class="feedback-section-content">
                                 ${isCorrect ? question.explanation.correct : question.explanation.wrong}
+                                <div class="arabic-explanation">
+                                    <span class="arabic-title">الشرح بالعربية:</span>
+                                    ${isCorrect ? question.explanationAr.correct : question.explanationAr.wrong}
+                                </div>
                             </div>
                         </div>
                         <div class="feedback-section">
@@ -2620,6 +2846,10 @@
                             </div>
                             <div class="feedback-section-content">
                                 ${question.explanation.grammar}
+                                <div class="arabic-explanation">
+                                    <span class="arabic-title">القاعدة النحوية بالعربية:</span>
+                                    ${question.explanationAr.grammar}
+                                </div>
                             </div>
                         </div>
                         <div class="feedback-section">
@@ -2629,6 +2859,10 @@
                             </div>
                             <div class="feedback-section-content">
                                 ${question.explanation.example}
+                                <div class="arabic-explanation">
+                                    <span class="arabic-title">المثال بالعربية:</span>
+                                    ${question.explanationAr.example}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2945,7 +3179,12 @@
                                     </div>
                                     <strong style="font-size: 0.9rem;">${isCorrect ? 'Correct Answer!' : 'Wrong Answer!'}</strong>
                                 </div>
-                                <div style="font-size: 0.85rem;">${question.explanation}</div>
+                                <div style="font-size: 0.85rem; margin-bottom: 5px;">
+                                    ${question.explanation}
+                                </div>
+                                <div style="font-size: 0.85rem; background: #f0f8ff; padding: 6px; border-radius: 4px; border-right: 2px solid var(--primary);">
+                                    <strong>الشرح بالعربية:</strong> ${question.explanationAr}
+                                </div>
                             </div>
                         ` : ''}
                     `;
@@ -3067,6 +3306,10 @@
                             </div>
                             <div class="feedback-section-content">
                                 ${question.explanation}
+                                <div class="arabic-explanation">
+                                    <span class="arabic-title">الشرح بالعربية:</span>
+                                    ${question.explanationAr}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3184,6 +3427,9 @@
                                 <div class="correct-hint">
                                     <i class="fas fa-lightbulb"></i>
                                     Correct answer: ${wordItem.word}
+                                    <div style="margin-top: 3px; font-size: 0.85rem; color: var(--primary);">
+                                        الإجابة الصحيحة: ${wordItem.word}
+                                    </div>
                                 </div>
                             ` : ''}
                         </div>
@@ -3223,7 +3469,13 @@
                     if (!existingHint) {
                         const hint = document.createElement('div');
                         hint.className = 'correct-hint';
-                        hint.innerHTML = `<i class="fas fa-lightbulb"></i> Correct answer: ${wordItem.word}`;
+                        hint.innerHTML = `
+                            <i class="fas fa-lightbulb"></i>
+                            Correct answer: ${wordItem.word}
+                            <div style="margin-top: 3px; font-size: 0.85rem; color: var(--primary);">
+                                الإجابة الصحيحة: ${wordItem.word}
+                            </div>
+                        `;
                         item.querySelector('.word-container').appendChild(hint);
                     }
                     if (select) select.disabled = true;
@@ -3392,7 +3644,12 @@
                         </div>
                         <strong style="font-size: 0.9rem;">${isCorrect ? 'Correct Answer!' : 'Wrong Answer!'}</strong>
                     </div>
-                    <div style="font-size: 0.85rem;">${question.explanation}</div>
+                    <div style="font-size: 0.85rem; margin-bottom: 5px;">
+                        ${question.explanation}
+                    </div>
+                    <div style="font-size: 0.85rem; background: #f0f8ff; padding: 6px; border-radius: 4px; border-right: 2px solid var(--primary);">
+                        <strong>الشرح بالعربية:</strong> ${question.explanationAr}
+                    </div>
                 `;
                 
                 questionElement.appendChild(feedback);
@@ -3416,348 +3673,314 @@
             }
 
             updateWritingAnswer(value) {
-                this.finalTestAnswers.writing = value;
+                this.finalTestAnswers.writing = value
                 this.saveProgress();
-                this.updateFinalTestProgress();
-            }
+                        this.updateFinalTestProgress();
+                    }
 
-            startTestTimer() {
-                this.updateTimerDisplay();
-                this.testTimer = setInterval(() => {
-                    this.timeRemaining--;
-                    this.updateTimerDisplay();
-                    
-                    if (this.timeRemaining <= 0) {
+                    submitFinalTest() {
                         this.stopTestTimer();
-                        alert('Test time is over!');
-                        this.submitFinalTest();
+                        
+                        let totalScore = 0;
+                        let maxScore = 40;
+                        let details = [];
+                        
+                        // Grammar - 9 أسئلة
+                        let grammarScore = 0;
+                        const grammarQuestions = this.currentFinalTestOrder.grammar || {};
+                        Object.keys(this.finalTestAnswers.grammar).forEach(questionId => {
+                            const userAnswer = this.finalTestAnswers.grammar[questionId];
+                            const questionInfo = grammarQuestions[questionId];
+                            if (questionInfo && userAnswer === questionInfo.correctAnswer) {
+                                grammarScore++;
+                            }
+                        });
+                        totalScore += grammarScore;
+                        details.push(`Grammar: ${grammarScore}/9`);
+                        
+                        // Orthography - 5 أسئلة
+                        let orthographyScore = 0;
+                        const orthographyQuestions = this.currentFinalTestOrder.orthography || {};
+                        Object.keys(this.finalTestAnswers.orthography).forEach(questionId => {
+                            const userAnswer = this.finalTestAnswers.orthography[questionId];
+                            const questionInfo = orthographyQuestions[questionId];
+                            if (questionInfo && userAnswer === questionInfo.correctAnswer) {
+                                orthographyScore++;
+                            }
+                        });
+                        totalScore += orthographyScore;
+                        details.push(`Orthography: ${orthographyScore}/5`);
+                        
+                        // Vocabulary - 9 أسئلة
+                        let vocabularyScore = 0;
+                        finalTestData.vocabulary.forEach(item => {
+                            if (this.finalTestAnswers.vocabulary[item.id] === item.correctMatch) {
+                                vocabularyScore++;
+                            }
+                        });
+                        totalScore += vocabularyScore;
+                        details.push(`Vocabulary: ${vocabularyScore}/9`);
+                        
+                        // Reading - 9 أسئلة
+                        let readingScore = 0;
+                        const readingQuestions = this.currentFinalTestOrder.reading || {};
+                        
+                        // التحقق من جميع الأسئلة التسعة
+                        finalTestData.reading.forEach(readingItem => {
+                            const questionId = readingItem.id;
+                            const userAnswer = this.finalTestAnswers.reading[questionId];
+                            const questionInfo = readingQuestions[questionId];
+                            
+                            if (userAnswer !== undefined && questionInfo) {
+                                if (userAnswer === questionInfo.correctAnswer) {
+                                    readingScore++;
+                                }
+                            }
+                        });
+                        totalScore += readingScore;
+                        details.push(`Reading: ${readingScore}/9`);
+                        
+                        // Writing - 8 نقاط
+                        let writingScore = 0;
+                        const writingAnswer = this.finalTestAnswers.writing || '';
+                        if (writingAnswer.trim().length > 0) {
+                            const usedWords = finalTestData.writing.words.filter(word => 
+                                writingAnswer.toLowerCase().includes(word.toLowerCase())
+                            ).length;
+                            
+                            const sentenceCount = (writingAnswer.match(/[.!?]/g) || []).length;
+                            
+                            if (usedWords >= 8 && sentenceCount >= 3 && sentenceCount <= 5) {
+                                writingScore = 8;
+                            } else if (usedWords >= 6 && sentenceCount >= 2) {
+                                writingScore = 6;
+                            } else if (usedWords >= 4 && sentenceCount >= 1) {
+                                writingScore = 4;
+                            } else if (writingAnswer.trim().length > 20) {
+                                writingScore = 2;
+                            }
+                        }
+                        totalScore += writingScore;
+                        details.push(`Writing: ${writingScore}/8`);
+                        
+                        this.finalTestScore = totalScore;
+                        this.saveProgress();
+                        
+                        const percentage = Math.round((totalScore / maxScore) * 100);
+                        
+                        const resultHTML = `
+                            <div style="text-align: center; padding: 1.2rem;">
+                                <div style="background: ${percentage >= 60 ? 'linear-gradient(135deg, var(--secondary) 0%, #05c490 100%)' : 'linear-gradient(135deg, var(--error) 0%, #d43f8d 100%)'}; 
+                                    width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
+                                    <i class="fas fa-${percentage >= 60 ? 'trophy' : 'graduation-cap'}" style="font-size: 2.2rem; color: white;"></i>
+                                </div>
+                                
+                                <h3 style="color: var(--text-primary); margin-bottom: 0.8rem; font-size: 1.1rem;">Final Test Result</h3>
+                                
+                                <div style="background: white; border-radius: 12px; padding: 1.2rem; max-width: 500px; margin: 0 auto 1.2rem; box-shadow: var(--shadow);">
+                                    <div style="font-size: 2.2rem; font-weight: 800; color: ${percentage >= 60 ? 'var(--secondary)' : 'var(--error)'}; margin-bottom: 0.8rem;">
+                                        ${totalScore}/${maxScore}
+                                    </div>
+                                    <div style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.8rem;">
+                                        ${percentage}%
+                                    </div>
+                                    <div style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
+                                        ${percentage >= 60 ? '✅ Pass - Well done!' : '⏳ Need more practice'}
+                                    </div>
+                                    
+                                    <div style="text-align: left; margin-top: 1.2rem; background: #f8f9fa; padding: 0.8rem; border-radius: 8px; font-size: 0.9rem;">
+                                        <div style="margin-bottom: 0.4rem; font-weight: 600;">Result Details:</div>
+                                        ${details.map(detail => `<div style="margin-bottom: 0.2rem;">${detail}</div>`).join('')}
+                                        <div style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border); font-weight: 600;">
+                                            Total Score: ${totalScore}/40
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-primary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">
+                                    <i class="fas fa-check-circle"></i>
+                                    OK
+                                </button>
+                            </div>
+                        `;
+                        
+                        document.getElementById('finalTestContent').innerHTML = resultHTML;
                     }
-                }, 1000);
-            }
 
-            stopTestTimer() {
-                if (this.testTimer) {
-                    clearInterval(this.testTimer);
-                    this.testTimer = null;
-                }
-            }
+                    showTestPreview() {
+                        const container = document.getElementById('finalTestContent');
+                        container.innerHTML = `
+                            <div style="text-align: center; padding: 1.2rem;">
+                                <div style="background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
+                                    <i class="fas fa-graduation-cap" style="font-size: 2rem; color: white;"></i>
+                                </div>
+                                
+                                <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.1rem;">Final Test Preview</h3>
+                                
+                                <div style="max-width: 800px; margin: 0 auto 1.5rem; text-align: left; font-size: 0.9rem;">
+                                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1rem;">Test Structure:</h4>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.2rem;">
+                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                                <div style="width: 34px; height: 34px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-language"></i>
+                                                </div>
+                                                <div style="text-align: left;">
+                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">9</div>
+                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Grammar</div>
+                                                </div>
+                                            </div>
+                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the correct answer</div>
+                                        </div>
+                                        
+                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--warning); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                                <div style="width: 34px; height: 34px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-spell-check"></i>
+                                                </div>
+                                                <div style="text-align: left;">
+                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--warning);">5</div>
+                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Orthography</div>
+                                                </div>
+                                            </div>
+                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the correct letter</div>
+                                        </div>
+                                        
+                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                                <div style="width: 34px; height: 34px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-book"></i>
+                                                </div>
+                                                <div style="text-align: left;">
+                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">9</div>
+                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Vocabulary</div>
+                                                </div>
+                                            </div>
+                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the word that matches the picture</div>
+                                        </div>
+                                        
+                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--info); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                                <div style="width: 34px; height: 34px; background: var(--info); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-book-reader"></i>
+                                                </div>
+                                                <div style="text-align: left;">
+                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--info);">9</div>
+                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Reading</div>
+                                                </div>
+                                            </div>
+                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">True or False</div>
+                                        </div>
+                                        
+                                        <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--error); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
+                                                <div style="width: 34px; height: 34px; background: var(--error); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-edit"></i>
+                                                </div>
+                                                <div style="text-align: left;">
+                                                    <div style="font-size: 1.4rem; font-weight: 800; color: var(--error);">8</div>
+                                                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Writing</div>
+                                                </div>
+                                            </div>
+                                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Write a short paragraph</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); border-radius: 12px; color: white;">
+                                        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.2rem;">
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 1.8rem; font-weight: 800;">40</div>
+                                                <div style="font-size: 0.8rem;">Total Questions</div>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 1.8rem; font-weight: 800;">60</div>
+                                                <div style="font-size: 0.8rem;">Minutes (Time)</div>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 1.8rem; font-weight: 800;">100</div>
+                                                <div style="font-size: 0.8rem;">Full Score</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 1.5rem;">
+                                    <button class="btn btn-primary" onclick="app.startFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin: 0 0.4rem 0.4rem;">
+                                        <i class="fas fa-play-circle"></i>
+                                        Start Test Now
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.2rem; font-size: 0.95rem;">
+                                        <i class="fas fa-times-circle"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        document.getElementById('finalTestModal').classList.add('active');
+                    }
 
-            updateTimerDisplay() {
-                const minutes = Math.floor(this.timeRemaining / 60);
-                const seconds = this.timeRemaining % 60;
-                document.getElementById('timeRemaining').textContent = 
-                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (this.timeRemaining < 300) {
-                    document.getElementById('timeRemaining').parentElement.style.background = 'rgba(239, 71, 111, 0.2)';
-                } else if (this.timeRemaining < 600) {
-                    document.getElementById('timeRemaining').parentElement.style.background = 'rgba(255, 209, 102, 0.2)';
-                }
-            }
+                    showPasswordAccess() {
+                        const passwordAccess = document.getElementById('passwordAccess');
+                        passwordAccess.style.display = 'block';
+                        document.getElementById('passwordMessage').style.display = 'none';
+                    }
 
-            submitFinalTest() {
-                this.stopTestTimer();
-                
-                let totalScore = 0;
-                let maxScore = 40;
-                let details = [];
-                
-                // Grammar - 9 أسئلة
-                let grammarScore = 0;
-                const grammarQuestions = this.currentFinalTestOrder.grammar || {};
-                Object.keys(this.finalTestAnswers.grammar).forEach(questionId => {
-                    const userAnswer = this.finalTestAnswers.grammar[questionId];
-                    const questionInfo = grammarQuestions[questionId];
-                    if (questionInfo && userAnswer === questionInfo.correctAnswer) {
-                        grammarScore++;
-                    }
-                });
-                totalScore += grammarScore;
-                details.push(`Grammar: ${grammarScore}/9`);
-                
-                // Orthography - 5 أسئلة
-                let orthographyScore = 0;
-                const orthographyQuestions = this.currentFinalTestOrder.orthography || {};
-                Object.keys(this.finalTestAnswers.orthography).forEach(questionId => {
-                    const userAnswer = this.finalTestAnswers.orthography[questionId];
-                    const questionInfo = orthographyQuestions[questionId];
-                    if (questionInfo && userAnswer === questionInfo.correctAnswer) {
-                        orthographyScore++;
-                    }
-                });
-                totalScore += orthographyScore;
-                details.push(`Orthography: ${orthographyScore}/5`);
-                
-                // Vocabulary - 9 أسئلة
-                let vocabularyScore = 0;
-                finalTestData.vocabulary.forEach(item => {
-                    if (this.finalTestAnswers.vocabulary[item.id] === item.correctMatch) {
-                        vocabularyScore++;
-                    }
-                });
-                totalScore += vocabularyScore;
-                details.push(`Vocabulary: ${vocabularyScore}/9`);
-                
-                // Reading - 9 أسئلة (تم تصحيح الخطأ هنا)
-                let readingScore = 0;
-                const readingQuestions = this.currentFinalTestOrder.reading || {};
-                
-                // التحقق من جميع الأسئلة التسعة
-                finalTestData.reading.forEach(readingItem => {
-                    const questionId = readingItem.id;
-                    const userAnswer = this.finalTestAnswers.reading[questionId];
-                    const questionInfo = readingQuestions[questionId];
-                    
-                    if (userAnswer !== undefined && questionInfo) {
-                        if (userAnswer === questionInfo.correctAnswer) {
-                            readingScore++;
+                    checkPassword() {
+                        const passwordInput = document.getElementById('passwordInput');
+                        const passwordMessage = document.getElementById('passwordMessage');
+                        
+                        if (passwordInput.value === '7245') {
+                            this.passwordUnlocked = true;
+                            this.saveProgress();
+                            this.updateFinalTestStatus();
+                            
+                            passwordMessage.textContent = '✅ Final test unlocked successfully!';
+                            passwordMessage.style.color = 'var(--secondary)';
+                            passwordMessage.style.display = 'block';
+                            
+                            setTimeout(() => {
+                                document.getElementById('passwordAccess').style.display = 'none';
+                                passwordInput.value = '';
+                            }, 2000);
+                        } else {
+                            passwordMessage.textContent = '❌ Wrong password!';
+                            passwordMessage.style.color = 'var(--error)';
+                            passwordMessage.style.display = 'block';
+                            passwordInput.value = '';
                         }
                     }
-                });
-                totalScore += readingScore;
-                details.push(`Reading: ${readingScore}/9`);
-                
-                // Writing - 8 نقاط
-                let writingScore = 0;
-                const writingAnswer = this.finalTestAnswers.writing || '';
-                if (writingAnswer.trim().length > 0) {
-                    const usedWords = finalTestData.writing.words.filter(word => 
-                        writingAnswer.toLowerCase().includes(word.toLowerCase())
-                    ).length;
-                    
-                    const sentenceCount = (writingAnswer.match(/[.!?]/g) || []).length;
-                    
-                    if (usedWords >= 8 && sentenceCount >= 3 && sentenceCount <= 5) {
-                        writingScore = 8;
-                    } else if (usedWords >= 6 && sentenceCount >= 2) {
-                        writingScore = 6;
-                    } else if (usedWords >= 4 && sentenceCount >= 1) {
-                        writingScore = 4;
-                    } else if (writingAnswer.trim().length > 20) {
-                        writingScore = 2;
+
+                    reviewUnit(unitId) {
+                        const unit = this.units.find(u => u.id === unitId);
+                        if (!unit) return;
+                        
+                        const answeredCount = Object.keys(this.unitAnswers[unit.id]?.answers || {}).length;
+                        const correctCount = answeredCount > 0 ? 
+                            Object.keys(this.unitAnswers[unit.id]?.answers || {}).filter(qId => {
+                                const question = unitQuestionsData[unit.id].find(q => q.id == qId);
+                                return question && this.unitAnswers[unit.id].answers[qId] === question.correctAnswer;
+                            }).length : 0;
+                        
+                        alert(`Review ${unit.name}\n\n` +
+                              `Questions Answered: ${answeredCount}/${unit.questionsNeeded}\n` +
+                              `Correct Answers: ${correctCount}/${answeredCount}\n` +
+                              `Accuracy: ${answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0}%\n\n` +
+                              `${unit.questionsCompleted >= unit.questionsNeeded ? 
+                                '✅ Unit Completed!' : 
+                                `⏳ You need to complete ${unit.questionsNeeded - unit.questionsCompleted} more questions`}`);
+                    }
+
+                    resetProgress() {
+                        if (confirm('Are you sure you want to reset progress? All answers and progress will be deleted.')) {
+                            localStorage.removeItem('superGoal3_progress');
+                            location.reload();
+                        }
                     }
                 }
-                totalScore += writingScore;
-                details.push(`Writing: ${writingScore}/8`);
-                
-                this.finalTestScore = totalScore;
-                this.saveProgress();
-                
-                const percentage = Math.round((totalScore / maxScore) * 100);
-                
-                const resultHTML = `
-                    <div style="text-align: center; padding: 1.2rem;">
-                        <div style="background: ${percentage >= 60 ? 'linear-gradient(135deg, var(--secondary) 0%, #05c490 100%)' : 'linear-gradient(135deg, var(--error) 0%, #d43f8d 100%)'}; 
-                            width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
-                            <i class="fas fa-${percentage >= 60 ? 'trophy' : 'graduation-cap'}" style="font-size: 2.2rem; color: white;"></i>
-                        </div>
-                        
-                        <h3 style="color: var(--text-primary); margin-bottom: 0.8rem; font-size: 1.1rem;">Final Test Result</h3>
-                        
-                        <div style="background: white; border-radius: 12px; padding: 1.2rem; max-width: 500px; margin: 0 auto 1.2rem; box-shadow: var(--shadow);">
-                            <div style="font-size: 2.2rem; font-weight: 800; color: ${percentage >= 60 ? 'var(--secondary)' : 'var(--error)'}; margin-bottom: 0.8rem;">
-                                ${totalScore}/${maxScore}
-                            </div>
-                            <div style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.8rem;">
-                                ${percentage}%
-                            </div>
-                            <div style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
-                                ${percentage >= 60 ? '✅ Pass - Well done!' : '⏳ Need more practice'}
-                            </div>
-                            
-                            <div style="text-align: left; margin-top: 1.2rem; background: #f8f9fa; padding: 0.8rem; border-radius: 8px; font-size: 0.9rem;">
-                                <div style="margin-bottom: 0.4rem; font-weight: 600;">Result Details:</div>
-                                ${details.map(detail => `<div style="margin-bottom: 0.2rem;">${detail}</div>`).join('')}
-                                <div style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border); font-weight: 600;">
-                                    Total Score: ${totalScore}/40
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button class="btn btn-primary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">
-                            <i class="fas fa-check-circle"></i>
-                            OK
-                        </button>
-                    </div>
-                `;
-                
-                document.getElementById('finalTestContent').innerHTML = resultHTML;
-            }
 
-            showTestPreview() {
-                const container = document.getElementById('finalTestContent');
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 1.2rem;">
-                        <div style="background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
-                            <i class="fas fa-graduation-cap" style="font-size: 2rem; color: white;"></i>
-                        </div>
-                        
-                        <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.1rem;">Final Test Preview</h3>
-                        
-                        <div style="max-width: 800px; margin: 0 auto 1.5rem; text-align: left; font-size: 0.9rem;">
-                            <h4 style="color: var(--primary); margin-bottom: 0.8rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; font-size: 1rem;">Test Structure:</h4>
-                            
-                            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.2rem;">
-                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                        <div style="width: 34px; height: 34px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fas fa-language"></i>
-                                        </div>
-                                        <div style="text-align: left;">
-                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">9</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Grammar</div>
-                                        </div>
-                                    </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the correct answer</div>
-                                </div>
-                                
-                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--warning); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                        <div style="width: 34px; height: 34px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fas fa-spell-check"></i>
-                                        </div>
-                                        <div style="text-align: left;">
-                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--warning);">5</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Orthography</div>
-                                        </div>
-                                    </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the correct letter</div>
-                                </div>
-                                
-                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--secondary); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                        <div style="width: 34px; height: 34px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fas fa-book"></i>
-                                        </div>
-                                        <div style="text-align: left;">
-                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">9</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Vocabulary</div>
-                                        </div>
-                                    </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Choose the word that matches the picture</div>
-                                </div>
-                                
-                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--info); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                        <div style="width: 34px; height: 34px; background: var(--info); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fas fa-book-reader"></i>
-                                        </div>
-                                        <div style="text-align: left;">
-                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--info);">9</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Reading</div>
-                                        </div>
-                                    </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">True or False</div>
-                                </div>
-                                
-                                <div style="background: white; padding: 1rem; border-radius: 12px; border: 2px solid var(--error); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.8rem;">
-                                        <div style="width: 34px; height: 34px; background: var(--error); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fas fa-edit"></i>
-                                        </div>
-                                        <div style="text-align: left;">
-                                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--error);">8</div>
-                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">Writing</div>
-                                        </div>
-                                    </div>
-                                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Write a short paragraph</div>
-                                </div>
-                            </div>
-                            
-                            <div style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, var(--final-test-color) 0%, #7b2cbf 100%); border-radius: 12px; color: white;">
-                                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.2rem;">
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 1.8rem; font-weight: 800;">40</div>
-                                        <div style="font-size: 0.8rem;">Total Questions</div>
-                                    </div>
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 1.8rem; font-weight: 800;">60</div>
-                                        <div style="font-size: 0.8rem;">Minutes (Time)</div>
-                                    </div>
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 1.8rem; font-weight: 800;">100</div>
-                                        <div style="font-size: 0.8rem;">Full Score</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top: 1.5rem;">
-                            <button class="btn btn-primary" onclick="app.startFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin: 0 0.4rem 0.4rem;">
-                                <i class="fas fa-play-circle"></i>
-                                Start Test Now
-                            </button>
-                            <button class="btn btn-secondary" onclick="app.closeFinalTestModal()" style="padding: 0.8rem 1.2rem; font-size: 0.95rem;">
-                                <i class="fas fa-times-circle"></i>
-                                Close
-                            </button>
-                        </div>
-                    </div>
-                `;
-                
-                document.getElementById('finalTestModal').classList.add('active');
-            }
-
-            showPasswordAccess() {
-                const passwordAccess = document.getElementById('passwordAccess');
-                passwordAccess.style.display = 'block';
-                document.getElementById('passwordMessage').style.display = 'none';
-            }
-
-            checkPassword() {
-                const passwordInput = document.getElementById('passwordInput');
-                const passwordMessage = document.getElementById('passwordMessage');
-                
-                if (passwordInput.value === '7245') {
-                    this.passwordUnlocked = true;
-                    this.saveProgress();
-                    this.updateFinalTestStatus();
-                    
-                    passwordMessage.textContent = '✅ Final test unlocked successfully!';
-                    passwordMessage.style.color = 'var(--secondary)';
-                    passwordMessage.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        document.getElementById('passwordAccess').style.display = 'none';
-                        passwordInput.value = '';
-                    }, 2000);
-                } else {
-                    passwordMessage.textContent = '❌ Wrong password!';
-                    passwordMessage.style.color = 'var(--error)';
-                    passwordMessage.style.display = 'block';
-                    passwordInput.value = '';
-                }
-            }
-
-            reviewUnit(unitId) {
-                const unit = this.units.find(u => u.id === unitId);
-                if (!unit) return;
-                
-                const answeredCount = Object.keys(this.unitAnswers[unit.id]?.answers || {}).length;
-                const correctCount = answeredCount > 0 ? 
-                    Object.keys(this.unitAnswers[unit.id]?.answers || {}).filter(qId => {
-                        const question = unitQuestionsData[unit.id].find(q => q.id == qId);
-                        return question && this.unitAnswers[unit.id].answers[qId] === question.correctAnswer;
-                    }).length : 0;
-                
-                alert(`Review ${unit.name}\n\n` +
-                      `Questions Answered: ${answeredCount}/${unit.questionsNeeded}\n` +
-                      `Correct Answers: ${correctCount}/${answeredCount}\n` +
-                      `Accuracy: ${answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0}%\n\n` +
-                      `${unit.questionsCompleted >= unit.questionsNeeded ? 
-                        '✅ Unit Completed!' : 
-                        `⏳ You need to complete ${unit.questionsNeeded - unit.questionsCompleted} more questions`}`);
-            }
-
-            resetProgress() {
-                if (confirm('Are you sure you want to reset progress? All answers and progress will be deleted.')) {
-                    localStorage.removeItem('superGoal3_progress');
-                    location.reload();
-                }
-            }
-        }
-
-        const app = new SuperGoalApp();
-    </script>
-</body>
-</html>
+                const app = new SuperGoalApp();
+            </script>
+        </body>
+        </html>
