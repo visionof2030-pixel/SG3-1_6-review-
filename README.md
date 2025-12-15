@@ -1660,16 +1660,21 @@
                 <!-- Result message will be filled here -->
             </div>
             
-            <div style="display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.5rem;">
+            <div style="display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
                 <button class="btn btn-primary" onclick="app.closeAutoResult()" 
-                        style="padding: 0.9rem 1.8rem; font-size: 1rem;">
+                        style="padding: 0.9rem 1.8rem; font-size: 1rem; min-width: 160px;">
                     <i class="fas fa-check-circle"></i>
                     إغلاق
                 </button>
+                <button class="btn btn-secondary" onclick="app.reviewTestAnswers()" 
+                        style="padding: 0.9rem 1.8rem; font-size: 1rem; min-width: 160px; background: linear-gradient(135deg, #118ab2 0%, #0a6b8a 100%); color: white;">
+                    <i class="fas fa-arrow-left"></i>
+                    العودة للاختبار
+                </button>
                 <button class="btn btn-secondary" onclick="app.retryTest()" 
-                        style="padding: 0.9rem 1.8rem; font-size: 1rem;">
+                        style="padding: 0.9rem 1.8rem; font-size: 1rem; min-width: 160px; background: linear-gradient(135deg, var(--warning) 0%, #e6b800 100%); color: #333;">
                     <i class="fas fa-redo"></i>
-                    حاول مرة أخرى
+                    إعادة الاختبار
                 </button>
             </div>
         </div>
@@ -3074,6 +3079,36 @@
                 this.closeFinalTestModal();
             }
 
+            reviewTestAnswers() {
+                // إغلاق نافذة النتيجة
+                document.getElementById('autoResultModal').classList.remove('active');
+                
+                // فتح نافذة الاختبار مرة أخرى لمراجعة الإجابات
+                document.getElementById('finalTestModal').classList.add('active');
+                
+                // تحديث حالة التصحيح للإجابات
+                this.isTestSubmitted = false;
+                this.allQuestionsAnswered = true; // للسماح بعرض الإجابات المصححة
+                
+                // إعادة عرض الاختبار مع الإجابات المصححة
+                this.renderFinalTest();
+                
+                // إظهار رسالة توضيحية
+                const autoResultContainer = document.getElementById('autoResultContainer');
+                if (autoResultContainer) {
+                    autoResultContainer.innerHTML = `
+                        <div style="background: linear-gradient(135deg, var(--info) 0%, #0a6b8a 100%); 
+                             color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; text-align: center;">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <i class="fas fa-eye" style="font-size: 1.5rem;"></i>
+                                <h4 style="margin: 0; font-size: 1.1rem;">وضع المراجعة</h4>
+                            </div>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">يمكنك الآن مراجعة إجاباتك المصححة. لن يمكنك تغيير الإجابات في هذا الوضع.</p>
+                        </div>
+                    `;
+                }
+            }
+
             retryTest() {
                 if (confirm('هل تريد إعادة الاختبار؟ سيتم مسح جميع إجاباتك الحالية.')) {
                     // إعادة تعيين إجابات الاختبار النهائي
@@ -3701,6 +3736,11 @@
             }
 
             selectFinalTestAnswer(section, questionId, optionIndex) {
+                // منع التعديل في وضع المراجعة أو بعد الإرسال
+                if (this.isTestSubmitted || this.allQuestionsAnswered) {
+                    return;
+                }
+                
                 if (this.finalTestAnswers[section][questionId] !== undefined) {
                     return;
                 }
@@ -3826,6 +3866,11 @@
             }
 
             selectVocabularyAnswerFinal(id, value) {
+                // منع التعديل في وضع المراجعة أو بعد الإرسال
+                if (this.isTestSubmitted || this.allQuestionsAnswered) {
+                    return;
+                }
+                
                 const wordItem = finalTestData.vocabulary.find(item => item.id === id);
                 if (!wordItem) return;
                 
@@ -3948,6 +3993,11 @@
             }
 
             selectTrueFalseAnswer(questionId, value) {
+                // منع التعديل في وضع المراجعة أو بعد الإرسال
+                if (this.isTestSubmitted || this.allQuestionsAnswered) {
+                    return;
+                }
+                
                 if (this.finalTestAnswers.reading[questionId] !== undefined) {
                     return;
                 }
@@ -4057,6 +4107,11 @@
             }
 
             updateWritingAnswer(value) {
+                // منع التعديل في وضع المراجعة أو بعد الإرسال
+                if (this.isTestSubmitted || this.allQuestionsAnswered) {
+                    return;
+                }
+                
                 this.finalTestAnswers.writing = value;
                 this.saveProgress();
                 this.updateFinalTestProgress();
