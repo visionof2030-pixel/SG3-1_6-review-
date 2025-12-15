@@ -1370,7 +1370,7 @@
             </div>
             <div class="teacher-info">
                 <i class="fas fa-chalkboard-teacher"></i>
-                Teacher: Fahad Al-Khaldi
+                Teacher: Fahad Al-Khaldi | فهد الخالدي
             </div>
         </header>
 
@@ -1455,7 +1455,7 @@
 
         <footer class="footer">
             <p>© 2024 Super Goal 3 Interactive Learning System</p>
-            <p style="margin-top: 0.4rem; color: var(--primary); font-weight: 600;">Prepared and designed by: Teacher Fahad Al-Khalidi</p>
+            <p style="margin-top: 0.4rem; color: var(--primary); font-weight: 600;">Prepared and designed by: Teacher Fahad Al-Khaldi | فهدالخالدي</p>
             <button class="btn btn-secondary" onclick="app.resetProgress()" style="margin-top: 0.8rem; max-width: 200px; margin-left: auto; margin-right: auto;">
                 <i class="fas fa-redo"></i>
                 Reset Progress
@@ -1509,8 +1509,8 @@
             <div style="padding: 1rem; border-top: 1px solid var(--border); text-align: center;">
                 <button class="btn btn-success" onclick="app.submitFinalTest()" style="padding: 0.8rem 1.5rem; font-size: 0.95rem; margin-bottom: 0.5rem;">
                     <i class="fas fa-paper-plane"></i>
-                    Submit Test
-                </button>
+                    
+                
                 <div style="color: var(--text-secondary); font-size: 0.85rem;">
                     <span id="testProgressText">0/40 questions answered</span>
                 </div>
@@ -1879,10 +1879,10 @@
                 {
                     id: 3,
                     question: "'Recently' means:",
-                    options: ["rarely", "long ago", "recently", "never"],
+                    options: ["rarely", "long ago", "not long ago", "never"],
                     correctAnswer: 2,
                     explanation: {
-                        correct: "Excellent! 'Recently' means 'recently' (recently, lately).",
+                        correct: "Excellent! 'Recently' means 'not long ago' (recently, lately).",
                         wrong: "Wrong. recently = not long ago; in the recent past",
                         grammar: "Time expressions: recently (recently), lately (lately), these days (these days)",
                         example: "Example: I've been very busy recently. Have you seen any good movies recently?"
@@ -1891,10 +1891,10 @@
                 {
                     id: 4,
                     question: "'Invention' means:",
-                    options: ["experiment", "discovery", "creation / invention", "improvement"],
+                    options: ["experiment", "discovery", "to innovate product", "improvement"],
                     correctAnswer: 2,
                     explanation: {
-                        correct: "Correct! 'Invention' means 'creation / invention' (invention, innovation).",
+                        correct: "Correct! 'Invention' means 'innovate product' (invention, innovation).",
                         wrong: "Wrong. invention = something that has been designed or created for the first time",
                         grammar: "Innovation: invention (invention) → inventor (inventor) → innovative (innovative)",
                         example: "Example: The telephone was an important invention. He has many inventions to his name."
@@ -1946,10 +1946,10 @@
                 {
                     id: 3,
                     question: "'Neighborhood' means:",
-                    options: ["city", "shop", "neighborhood", "street"],
+                    options: ["city", "shop", "Surrounding area", "street"],
                     correctAnswer: 2,
                     explanation: {
-                        correct: "Excellent! 'Neighborhood' means 'neighborhood' (neighborhood, residential area).",
+                        correct: "Excellent! 'Neighborhood' means 'Surrounding area' (neighborhood, residential area).",
                         wrong: "Wrong. neighborhood = a district or community within a town or city",
                         grammar: "Places: neighborhood (neighborhood) → city (city) → street (street) → district (district)",
                         example: "Example: It's a quiet neighborhood with good schools. We've lived in this neighborhood for years."
@@ -2019,7 +2019,7 @@
                 },
                 {
                     id: 5,
-                    question: "I ____ to play with toys when I was a child.",
+                    question: "I ____  play with toys when I was a child.",
                     options: ["use", "used", "used to"],
                     correctAnswer: 2,
                     explanation: "Correct! 'used to' expresses a past habit. Correct sentence: I used to play with toys when I was a child."
@@ -3462,24 +3462,33 @@
                 let maxScore = 40;
                 let details = [];
                 
+                // Grammar - 9 أسئلة
                 let grammarScore = 0;
-                finalTestData.grammar.forEach(q => {
-                    if (this.finalTestAnswers.grammar[q.id] === q.correctAnswer) {
+                const grammarQuestions = this.currentFinalTestOrder.grammar || {};
+                Object.keys(this.finalTestAnswers.grammar).forEach(questionId => {
+                    const userAnswer = this.finalTestAnswers.grammar[questionId];
+                    const questionInfo = grammarQuestions[questionId];
+                    if (questionInfo && userAnswer === questionInfo.correctAnswer) {
                         grammarScore++;
                     }
                 });
                 totalScore += grammarScore;
                 details.push(`Grammar: ${grammarScore}/9`);
                 
+                // Orthography - 5 أسئلة
                 let orthographyScore = 0;
-                finalTestData.orthography.forEach(q => {
-                    if (this.finalTestAnswers.orthography[q.id] === q.correctAnswer) {
+                const orthographyQuestions = this.currentFinalTestOrder.orthography || {};
+                Object.keys(this.finalTestAnswers.orthography).forEach(questionId => {
+                    const userAnswer = this.finalTestAnswers.orthography[questionId];
+                    const questionInfo = orthographyQuestions[questionId];
+                    if (questionInfo && userAnswer === questionInfo.correctAnswer) {
                         orthographyScore++;
                     }
                 });
                 totalScore += orthographyScore;
                 details.push(`Orthography: ${orthographyScore}/5`);
                 
+                // Vocabulary - 9 أسئلة
                 let vocabularyScore = 0;
                 finalTestData.vocabulary.forEach(item => {
                     if (this.finalTestAnswers.vocabulary[item.id] === item.correctMatch) {
@@ -3489,15 +3498,26 @@
                 totalScore += vocabularyScore;
                 details.push(`Vocabulary: ${vocabularyScore}/9`);
                 
+                // Reading - 9 أسئلة (تم تصحيح الخطأ هنا)
                 let readingScore = 0;
-                finalTestData.reading.forEach(q => {
-                    if (this.finalTestAnswers.reading[q.id] === q.correctAnswer) {
-                        readingScore++;
+                const readingQuestions = this.currentFinalTestOrder.reading || {};
+                
+                // التحقق من جميع الأسئلة التسعة
+                finalTestData.reading.forEach(readingItem => {
+                    const questionId = readingItem.id;
+                    const userAnswer = this.finalTestAnswers.reading[questionId];
+                    const questionInfo = readingQuestions[questionId];
+                    
+                    if (userAnswer !== undefined && questionInfo) {
+                        if (userAnswer === questionInfo.correctAnswer) {
+                            readingScore++;
+                        }
                     }
                 });
                 totalScore += readingScore;
                 details.push(`Reading: ${readingScore}/9`);
                 
+                // Writing - 8 نقاط
                 let writingScore = 0;
                 const writingAnswer = this.finalTestAnswers.writing || '';
                 if (writingAnswer.trim().length > 0) {
