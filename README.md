@@ -571,11 +571,6 @@
             cursor: default;
         }
 
-        .option-letter {
-            display: none;
-        }
-
-        .option.correct .option-letter,
         .option.incorrect .option-letter {
             display: none;
         }
@@ -1634,13 +1629,20 @@
     <!-- Auto Result Display Modal -->
     <div class="auto-result-container" id="autoResultModal">
         <div class="auto-result-content">
-            <div style="margin-bottom: 2rem;">
-                <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">
-                    النتيجة
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+                <div>
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">
+                        النتيجة
+                    </div>
+                    <div style="font-size: 1rem; color: var(--text-secondary);">
+                        Result
+                    </div>
                 </div>
-                <div style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem;">
-                    Result
-                </div>
+                <!-- زر الإغلاق الجديد - في الأعلى بجانب العنوان -->
+                <button class="modal-close" onclick="app.closeAutoResult()" 
+                        style="background: var(--error); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; flex-shrink: 0;">
+                    &times;
+                </button>
             </div>
             
             <div class="result-circle" id="resultCircle">
@@ -1665,6 +1667,11 @@
                         style="padding: 0.9rem 1.8rem; font-size: 1rem; min-width: 160px;">
                     <i class="fas fa-check-circle"></i>
                     إغلاق
+                </button>
+                <button class="btn btn-danger" onclick="app.closeAutoResult()" 
+                        style="padding: 0.9rem 1.8rem; font-size: 1rem; min-width: 160px; background: linear-gradient(135deg, var(--error) 0%, #c53030 100%);">
+                    <i class="fas fa-times"></i>
+                    خروج من النتيجة
                 </button>
                 <button class="btn btn-secondary" onclick="app.reviewTestAnswers()" 
                         style="padding: 0.9rem 1.8rem; font-size: 1rem; min-width: 160px; background: linear-gradient(135deg, #118ab2 0%, #0a6b8a 100%); color: white;">
@@ -3020,9 +3027,17 @@
                 
                 // تعيين تفاصيل النتيجة
                 resultDetails.innerHTML = `
-                    <div style="margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--border);">
-                        <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem;">تفاصيل النتيجة</div>
-                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Result Details</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--border);">
+                        <div>
+                            <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem;">تفاصيل النتيجة</div>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Result Details</div>
+                        </div>
+                        <!-- زر إغلاق واضح في قسم التفاصيل -->
+                        <button onclick="app.closeAutoResult()" 
+                                style="background: var(--error); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; cursor: pointer; font-weight: 600;">
+                            <i class="fas fa-times"></i>
+                            إغلاق
+                        </button>
                     </div>
                     ${details.map(detail => {
                         const [section, score] = detail.split(': ');
